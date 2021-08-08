@@ -46,7 +46,7 @@ export function PiniaStateSync({ pinia }: PiniaPluginContext) {
     /** Check storage for initial data. */
     const storage = localStorage.getItem(CHANNEL_NAME)
     if (storage) {
-        pinia.state.value = JSON.parse(storage).data
+        pinia.state.value = JSON.parse(storage).state
     }
 
     watch(pinia.state, (state) => {
