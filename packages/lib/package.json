@@ -1,0 +1,47 @@
+{
+  "name": "pinia-state-sync",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "./dist/pinia-state-sync.umd.js",
+  "module": "./dist/pinia-state-sync.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/pinia-state-sync.es.js",
+      "require": "./dist/pinia-state-sync.umd.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc && vite build",
+    "build:watch": "yarn build --watch",
+    "switch:2": "vue-demi-switch 2 vue2",
+    "switch:3": "vue-demi-switch 3"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.10",
+    "typescript": "^4.3.2",
+    "vite": "^2.4.4",
+    "vite-plugin-dts": "^0.5.3",
+    "vue": "^3.0.11"
+  },
+  "dependencies": {
+    "pinia": "next",
+    "vue-demi": "^0.11.2"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wobsoriano/pinia-state-sync.git"
+  }
+}

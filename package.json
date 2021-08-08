@@ -1,0 +1,13 @@
+{
+    "name": "monorepo",
+    "private": true,
+    "workspaces": [
+      "packages/*"
+    ],
+    "scripts": {
+      "lib:watch": "yarn workspace pinia-state-sync run build:watch",
+      "lib": "yarn workspace pinia-state-sync",
+      "demo": "yarn workspace demo",
+      "copy:md": "cp README.md packages/lib/README.md && cp LICENSE.md packages/lib/LICENSE.md"
+    }
+}
