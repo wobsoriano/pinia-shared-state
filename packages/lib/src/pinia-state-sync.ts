@@ -5,8 +5,8 @@ let isRegistered = false;
 const CHANNEL_NAME = 'piniastatesync.message';
 
 interface BroadcastMessage {
-  event: 'storage';
-  state: Record<string, StateTree>;
+  event?: 'storage';
+  state?: Record<string, StateTree>;
 }
 
 /**
@@ -23,7 +23,7 @@ function BroadcastChannel() {
       window.addEventListener('storage', (event) => {
         if (event.key !== CHANNEL_NAME) return;
         const message = JSON.parse(event.newValue as string) as BroadcastMessage;
-        if (message.event !== 'storage' || !message.state) return;
+        if (message?.event !== 'storage' || !message?.state) return;
           
         onReceive(message);
       });
@@ -45,16 +45,14 @@ export function PiniaStateSync({ pinia }: PiniaPluginContext) {
   if (!isRegistered) {
     /** Check storage for initial data. */
     const storage = localStorage.getItem(CHANNEL_NAME)
-    if (storage) {
-        pinia.state.value = JSON.parse(storage).state
-    }
+    if (storage) pinia.state.value = JSON.parse(storage).state;
 
     watch(pinia.state, (state) => {
         broadcast.post({ event: 'storage', state: JSON.parse(JSON.stringify(state)) });
     }, { deep: true });
 
     broadcast.receive(({ state }) => {
-        pinia.state.value = state;
+        if (state) pinia.state.value = state;
     });
 
     isRegistered = true;
