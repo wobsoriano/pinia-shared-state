@@ -9,4 +9,4 @@ pinia.use(PiniaStateSync);
 
 app.use(pinia);
 
-app.mount('#app')
+app.mount('#app');
