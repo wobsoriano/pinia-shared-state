@@ -5,7 +5,7 @@ A lightweight plugin to sync your pinia state across browser tabs. Supports Vue 
 ## Install
 
 ```sh
-yarn add pinia-state-sync
+yarn add pinia@next pinia-state-sync
 ```
 
 ## Usage

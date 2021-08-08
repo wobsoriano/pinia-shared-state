@@ -5,7 +5,7 @@ A lightweight plugin to sync your pinia state across browser tabs. Supports Vue 
 ## Install
 
 ```sh
-yarn add pinia-state-sync
+yarn add pinia@next pinia-state-sync
 ```
 
 ## Usage
@@ -27,7 +27,6 @@ app.use(pinia)
 
 - [pinia](https://pinia.esm.dev/) - 🍍 Intuitive, type safe, light and flexible Store for Vue using the composition api with DevTools support.
 - [vue-demi](https://github.com/vueuse/vue-demi/) - Creates Universal Library for Vue 2 & 3.
-- [vue-use](https://vueuse.org/) - Collection of essential Vue Composition Utilities.
 
 ### License
 
