@@ -38,8 +38,7 @@
     }
   },
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "repository": {
     "type": "git",
