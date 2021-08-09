@@ -1,11 +1,11 @@
-# pinia-state-sync
+# pinia-broadcast
 
 A lightweight plugin to sync your pinia state across browser tabs. Supports Vue 2 and 3.
 
 ## Install
 
 ```sh
-yarn add pinia@next pinia-state-sync
+yarn add pinia@next broadcast
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ Add to the pinia instance with `pinia.use()`.
 
 ```ts
 import { createPinia } from 'pinia'
-import PiniaStateSync from 'pinia-state-sync'
+import { broadcast, isSupported } from 'pinia-broadcast'
 
 const pinia = createPinia()
 // give the plugin to pinia

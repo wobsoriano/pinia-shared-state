@@ -5,8 +5,8 @@
       "packages/*"
     ],
     "scripts": {
-      "lib:watch": "yarn workspace pinia-state-sync run build:watch",
-      "lib": "yarn workspace pinia-state-sync",
+      "lib:watch": "yarn workspace pinia-shared-state run build:watch",
+      "lib": "yarn workspace pinia-shared-state",
       "demo": "yarn workspace demo",
       "copy:md": "cp README.md packages/lib/README.md && cp LICENSE.md packages/lib/LICENSE.md"
     }

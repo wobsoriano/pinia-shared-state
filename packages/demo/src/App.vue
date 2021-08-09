@@ -10,8 +10,13 @@
 
 <script setup lang="ts">
 import { useCounterStore } from "./store";
+import { broadcast } from 'pinia-state-sync'
 
 const counterStore = useCounterStore();
+
+counterStore.count
+
+broadcast('count', counterStore)
 </script>
 
 <style>

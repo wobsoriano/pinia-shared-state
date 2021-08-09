@@ -1,14 +1,14 @@
 {
-  "name": "pinia-state-sync",
+  "name": "pinia-shared-state",
   "version": "0.0.1",
   "license": "MIT",
-  "main": "./dist/pinia-state-sync.umd.js",
-  "module": "./dist/pinia-state-sync.es.js",
-  "types": "./index.d.ts",
+  "main": "./dist/pinia-shared-state.umd.js",
+  "module": "./dist/pinia-shared-state.es.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/pinia-state-sync.es.js",
-      "require": "./dist/pinia-state-sync.umd.js"
+      "import": "./dist/pinia-shared-state.es.js",
+      "require": "./dist/pinia-shared-state.umd.js"
     }
   },
   "scripts": {
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/node": "^16.4.10",
     "typescript": "^4.3.2",
+    "vite-plugin-dts": "^0.5.3",
     "vite": "^2.4.4",
     "vue": "^3.0.11"
   },
@@ -42,6 +43,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wobsoriano/pinia-state-sync.git"
+    "url": "https://github.com/wobsoriano/pinia-shared-state.git"
   }
 }
