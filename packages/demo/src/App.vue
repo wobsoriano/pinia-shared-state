@@ -10,13 +10,13 @@
 
 <script setup lang="ts">
 import { useCounterStore } from "./store";
-import { broadcast } from 'pinia-state-sync'
+import { share, isSupported } from 'pinia-shared-state'
 
 const counterStore = useCounterStore();
 
-counterStore.count
-
-broadcast('count', counterStore)
+if (isSupported()) {
+    share('count', counterStore);
+}
 </script>
 
 <style>
