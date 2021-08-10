@@ -156,7 +156,7 @@ declare module 'pinia' {
      * ```
      */
     share?: {
-      omit?: string[];
+      omit?: Array<keyof S>;
       enable?: boolean;
       initialize?: boolean;
     }
