@@ -20,6 +20,8 @@ import { PiniaSharedState } from 'pinia-shared-state'
 
 // Pass the plugin to your application's pinia plugin
 pinia.use(PiniaSharedState({
+    // Enables the plugin for all stores. Defaults to true.
+    enable: true,
     // If set to true this tab tries to immediately recover the shared state from another tab. Defaults to true.
     initialize: false
 }))
@@ -36,7 +38,8 @@ const useStore = defineStore({
       // An array of fields that the plugin will ignore.
       omit: ['foo'],
       // Override global config for this store.
-      initialize: false
+      enable: true
+      initialize: true
   }
 });
 ```
