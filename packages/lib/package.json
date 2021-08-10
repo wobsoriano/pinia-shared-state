@@ -1,6 +1,6 @@
 {
   "name": "pinia-shared-state",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "main": "./dist/pinia-shared-state.umd.js",
   "module": "./dist/pinia-shared-state.es.js",
@@ -26,11 +26,11 @@
   },
   "dependencies": {
     "pinia": "beta",
-    "vue-demi": "^0.11.2"
+    "vue-demi": "latest"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.1.0",
-    "vue": "^2.0.0 || >=3.2.0"
+    "vue": "^2.6.14 || ^3.2.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {

@@ -1424,7 +1424,7 @@ vscode-vue-languageservice@^0.26.6:
     vscode-pug-languageservice "^0.26.10"
     vscode-typescript-languageservice "^0.26.10"
 
-vue-demi@^0.11.2, vue-demi@latest:
+vue-demi@latest:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.11.2.tgz#faa06da53887c493a695b997f4fcb4784a667990"
   integrity sha512-J+X8Au6BhQdcej6LY4O986634hZLu55L0ewU2j8my7WIKlu8cK0dqmdUxqVHHMd/cMrKKZ9SywB/id6aLhwCtA==

@@ -10,7 +10,7 @@
   "dependencies": {
     "vue": "^3.2.0",
     "pinia": "beta",
-    "pinia-shared-state": "^0.0.2"
+    "pinia-shared-state": "^0.0.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.4.0",
