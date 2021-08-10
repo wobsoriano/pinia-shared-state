@@ -106,20 +106,23 @@ const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state'])
  * import { PiniaSharedState } from 'pinia-shared-state'
  *
  * // Pass the plugin to your application's pinia plugin
- * pinia.use(PiniaSharedState({ initialize: true }))
+ * pinia.use(PiniaSharedState({ enable: true, initialize: false }))
  * ```
  *
  * @param options - Global plugin options.
+ * @param options.enable - Enable/disable the plugin for all stores.
  * @param options.initialize - Immediately recover the shared state from another tab.
  */
-export const PiniaSharedState = ({ initialize = true } = {}) => {
+export const PiniaSharedState = ({ initialize = true, enable = true } = {}) => {
   return ({ store, options }: PiniaPluginContext) => {
     if (!isSupported()) {
       console.error('BroadcastChannel API is not supported in this device.');
       return;
     }
-
+    const enabled = options?.share?.enable ?? enable
     const omit = options?.share?.omit ?? [];
+    if (!enabled) return;
+    
     Object.keys(store.$state).forEach((key) => {
       if (omit.includes(key) || !stateHasKey(key, store.$state)) return;
       share(key, store, {
@@ -143,6 +146,8 @@ declare module 'pinia' {
      *   share: {
      *     // An array of fields that the plugin will ignore.
      *     omit: ['name'],
+     *     // Enable/disable sharing of state for this store.
+     *     enable: false
      *     // If set to true this tab tries to immediately recover the
      *     // shared state from another tab. Defaults to true.
      *     initialize: false
@@ -152,6 +157,7 @@ declare module 'pinia' {
      */
     share?: {
       omit?: string[];
+      enable?: boolean;
       initialize?: boolean;
     }
   }
