@@ -5,39 +5,34 @@ A lightweight module to sync your pinia state across browser tabs using the [Bro
 ## Install
 
 ```sh
-yarn add pinia@next pinia-shared-state
+yarn add pinia@beta pinia-shared-state
 ```
 
 ## Usage
 
-```ts
-import { defineStore } from 'pinia'
-import { share, isSupported } from 'pinia-shared-state'
+```js
+import { PiniaSharedState } from 'pinia-shared-state'
 
-const useCounterStore = defineStore({
-  id: 'counter',
-  state: () => ({ count: 0 })
-})
-
-const counterStore = useCounterStore()
-
-if (isSupported()) {
-    // share the property "count" of the state with other tabs.
-    share('count', counterStore)
-}
+// Pass the plugin to your application's pinia plugin
+pinia.use(PiniaSharedState({
+    // If set to true this tab tries to immediately recover the shared state from another tab. Defaults to true.
+    initialize: false
+}))
 ```
 
-## API
-
-```ts
-share('count', counterStore, {
-    // If set to true this tab tries to immediately recover the shared state from another tab. Defaults to true.
-    initialize: true,
-    /*
-        Each shared property is shared over a specific channel with a name that has to be unique.
-        By default the name of the property is used. So if you want to share properties from different stores with the same name set this to something unique.
-    */
-    ref: "shared-store",
+```js
+const useStore = defineStore({
+  id: 'counter',
+  state: () => ({
+      count: 0,
+      foo: 'bar'
+  }),
+  share: {
+      // An array of fields that the plugin will ignore.
+      omit: ['foo'],
+      // Override global config for this store.
+      initialize: false
+  }
 });
 ```
 
