@@ -88,7 +88,7 @@ const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state'])
  * import { PiniaSharedState } from 'pinia-shared-state'
  *
  * // Pass the plugin to your application's pinia plugin
- * pinia.use(PiniaDebounce({ initialize: true }))
+ * pinia.use(PiniaSharedState({ initialize: true }))
  * ```
  *
  * @param initialize - Immediately recover the shared state from another tab.
