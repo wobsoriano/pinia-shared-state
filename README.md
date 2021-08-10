@@ -41,6 +41,24 @@ const useStore = defineStore({
 });
 ```
 
+Don't want to use it as a plugin? You can share state on your own:
+
+```js
+import { defineComponent } from 'vue'
+import { share, isSupported } from 'pinia-shared-state'
+import useStore from './store'
+
+export default defineComponent({
+    setup() {
+        const counterStore = useStore()
+
+        if (isSupported()) {
+            share('counter', counterStore, { initialize: true })
+        }
+    }
+})
+```
+
 ## Credits
 
 - [pinia](https://pinia.esm.dev/) - 🍍 Intuitive, type safe, light and flexible Store for Vue using the composition api with DevTools support.
