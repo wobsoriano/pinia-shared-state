@@ -110,7 +110,7 @@ const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state'])
  * ```
  *
  * @param options - Global plugin options.
- * @param options.enable - Enable/disable the plugin for all stores.
+ * @param options.enable - Enable/disable sharing of state for all stores.
  * @param options.initialize - Immediately recover the shared state from another tab.
  */
 export const PiniaSharedState = ({ initialize = true, enable = true } = {}) => {
