@@ -38,7 +38,7 @@ const useStore = defineStore({
       // An array of fields that the plugin will ignore.
       omit: ['foo'],
       // Override global config for this store.
-      enable: true
+      enable: true,
       initialize: true
   }
 });
