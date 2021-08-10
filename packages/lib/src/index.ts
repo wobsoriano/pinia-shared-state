@@ -1,5 +1,5 @@
 import { watch } from 'vue-demi';
-import { Store } from 'pinia';
+import type { PiniaPluginContext, Store } from 'pinia';
 
 declare global {
   interface Window {
@@ -14,19 +14,17 @@ export function isSupported() {
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
-  { ref = 'shared-', initialize = true } = {}
+  { initialize }: { initialize: boolean }
 ): { sync: () => void, unshare: () => void } {
-  const channelName = `${ref}-${key.toString()}`;
+  const channelName = `shared-${store['$id']}-${key.toString()}`;
 
   if (process.env.NODE_ENV !== 'production') {
       if (!window.__SHARED_PINIA_USED_CHANNELS__) {
           window.__SHARED_PINIA_USED_CHANNELS__ = new Set();
       }
       if (window.__SHARED_PINIA_USED_CHANNELS__.has(channelName)) {
-          console.warn(
-              `Two shared properties are using the channel "${channelName}". If you want to reuse a channel name make sure to free the channel by calling unshare() first.`
-          );
-          // @ts-ignore
+          console.warn(`Channel with name "${channelName}" already exists.`);
+          // @ts-expect-error: Shared properties using the same channel name.
           return;
       }
       window.__SHARED_PINIA_USED_CHANNELS__.add(channelName);
@@ -75,4 +73,67 @@ export function share<T extends Store, K extends keyof T['$state']>(
   }
 
   return { sync, unshare }
+}
+
+const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state']) => {
+  return Object.keys($state).includes(key)
+}
+
+/**
+ * Adds a `share` option to your store to share state across browser tabs.
+ *
+ * @example
+ *
+ * ```ts
+ * import { PiniaSharedState } from 'pinia-shared-state'
+ *
+ * // Pass the plugin to your application's pinia plugin
+ * pinia.use(PiniaDebounce({ initialize: true }))
+ * ```
+ *
+ * @param initialize - Immediately recover the shared state from another tab.
+ */
+export const PiniaSharedState = ({ initialize = true } = {}) => {
+  return ({ store, options }: PiniaPluginContext) => {
+    if (!isSupported()) {
+      console.error('BroadcastChannel API is not supported in this device.');
+      return;
+    }
+
+    const omit = options?.share?.omit ?? [];
+    Object.keys(store.$state).forEach((key) => {
+      if (omit.includes(key) || !stateHasKey(key, store.$state)) return;
+      share(key, store, {
+        initialize: options?.share?.initialize ?? initialize
+      });
+    });
+  }
+}
+
+declare module 'pinia' {
+  export interface DefineStoreOptionsBase<S, Store> {
+    /**
+     * Sync your state across browser tabs.
+     *
+     * @example
+     *
+     * ```js
+     * defineStore({
+     *   id: 'counter',
+     *   state: () => ({ count: 0, name: 'John Doe' })
+     *   share: {
+     *     // An array of fields that the plugin will ignore.
+     *     omit: ['name'],
+     *     // If set to true this tab tries to immediately recover the
+     *     // shared state from another tab. Defaults to true.
+     *     initialize: false
+     *   }
+     * })
+     * ```
+     */
+    share?: {
+      omit?: string[];
+      initialize?: boolean;
+    }
+  }
 }

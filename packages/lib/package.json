@@ -20,17 +20,17 @@
   "devDependencies": {
     "@types/node": "^16.4.10",
     "typescript": "^4.3.2",
-    "vite-plugin-dts": "^0.5.3",
     "vite": "^2.4.4",
-    "vue": "^3.0.11"
+    "vite-plugin-dts": "^0.5.3",
+    "vue": "^3.2.0"
   },
   "dependencies": {
-    "pinia": "next",
+    "pinia": "beta",
     "vue-demi": "^0.11.2"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-rc.1",
-    "vue": "^2.0.0 || >=3.0.0"
+    "@vue/composition-api": "^1.1.0",
+    "vue": "^2.0.0 || >=3.2.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
