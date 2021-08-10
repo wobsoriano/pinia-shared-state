@@ -11,6 +11,31 @@ export function isSupported() {
   return 'BroadcastChannel' in window;
 }
 
+/**
+ * 
+ * @param key 
+ * @param store 
+ * @param param2 
+ * @returns 
+ */
+
+/**
+ * Adds a `share` option to your store to share state across browser tabs.
+ *
+ * @example
+ *
+ * ```ts
+ * import { PiniaSharedState } from 'pinia-shared-state'
+ *
+ * // Pass the plugin to your application's pinia plugin
+ * pinia.use(PiniaSharedState({ initialize: true }))
+ * ```
+ *
+ * @param key - A property of a store state.
+ * @param store - The store the plugin will augment.
+ * @param options - Share state options.
+ * @param options.initialize - Immediately recover the shared state from another tab.
+ */
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
@@ -91,7 +116,8 @@ const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state'])
  * pinia.use(PiniaSharedState({ initialize: true }))
  * ```
  *
- * @param initialize - Immediately recover the shared state from another tab.
+ * @param options - Global plugin options.
+ * @param options.initialize - Immediately recover the shared state from another tab.
  */
 export const PiniaSharedState = ({ initialize = true } = {}) => {
   return ({ store, options }: PiniaPluginContext) => {
