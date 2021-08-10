@@ -4,8 +4,8 @@ A lightweight module to sync your pinia state across browser tabs using the [Bro
 
 ## Requirements
 
-- `pinia@beta`
-- `vue` `^2.6.14` with `@vue/composition-api` `^1.1.0` || `vue` `^3.2.0`
+- pinia@beta
+- vue ^2.6.14 || ^3.2.0
 
 ## Install
 
