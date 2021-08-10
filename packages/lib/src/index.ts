@@ -113,7 +113,7 @@ export const PiniaSharedState = ({ initialize = true } = {}) => {
 declare module 'pinia' {
   export interface DefineStoreOptionsBase<S, Store> {
     /**
-     * Sync your state across browser tabs.
+     * Override global config.
      *
      * @example
      *
