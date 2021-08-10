@@ -6,7 +6,9 @@ import { PiniaSharedState } from 'pinia-shared-state'
 const app = createApp(App);
 
 const pinia = createPinia();
-pinia.use(PiniaSharedState())
+pinia.use(PiniaSharedState({
+    enable: false
+}))
 
 app.use(pinia);
 

@@ -15,5 +15,9 @@ export const useCounterStore = defineStore({
         if (!this.count) return;
         this.count--;
     }
+  },
+
+  share: {
+    enable: true
   }
 });
