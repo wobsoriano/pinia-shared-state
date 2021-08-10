@@ -2,6 +2,11 @@
 
 A lightweight module to sync your pinia state across browser tabs using the [BroadcastChannel API](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API). Supports Vue 2 and 3.
 
+## Requirements
+
+- pinia@beta
+- Vue ^2.6.14 || ^3.2.0
+
 ## Install
 
 ```sh
