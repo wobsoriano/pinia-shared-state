@@ -12,23 +12,16 @@ export function isSupported() {
 }
 
 /**
- * 
- * @param key 
- * @param store 
- * @param param2 
- * @returns 
- */
-
-/**
  * Adds a `share` option to your store to share state across browser tabs.
  *
  * @example
  *
  * ```ts
- * import { PiniaSharedState } from 'pinia-shared-state'
+ * import useStore from './store'
  *
- * // Pass the plugin to your application's pinia plugin
- * pinia.use(PiniaSharedState({ initialize: true }))
+ * const counterStore = useStore()
+ * 
+ * share('counter', counterStore, { initialize: true })
  * ```
  *
  * @param key - A property of a store state.
