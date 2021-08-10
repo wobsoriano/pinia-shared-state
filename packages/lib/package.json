@@ -1,6 +1,6 @@
 {
   "name": "pinia-shared-state",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "main": "./dist/pinia-shared-state.umd.js",
   "module": "./dist/pinia-shared-state.es.js",
