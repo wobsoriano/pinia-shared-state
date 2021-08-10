@@ -12,7 +12,7 @@ export function isSupported() {
 }
 
 /**
- * Adds a `share` option to your store to share state across browser tabs.
+ * Share state across browser tabs.
  *
  * @example
  *
