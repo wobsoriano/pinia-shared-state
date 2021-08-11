@@ -119,12 +119,12 @@ export const PiniaSharedState = ({ initialize = true, enable = true } = {}) => {
       console.error('BroadcastChannel API is not supported in this device.');
       return;
     }
-    const enabled = options?.share?.enable ?? enable
-    const omit = options?.share?.omit ?? [];
-    if (!enabled) return;
+    const isEnabled = options?.share?.enable ?? enable
+    const omittedKeys = options?.share?.omit ?? [];
+    if (!isEnabled) return;
     
     Object.keys(store.$state).forEach((key) => {
-      if (omit.includes(key) || !stateHasKey(key, store.$state)) return;
+      if (omittedKeys.includes(key) || !stateHasKey(key, store.$state)) return;
       share(key, store, {
         initialize: options?.share?.initialize ?? initialize
       });
