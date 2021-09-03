@@ -1,5 +1,8 @@
 # pinia-shared-state
 
+[![npm version](https://badge.fury.io/js/pinia-shared-state.svg)](https://badge.fury.io/js/pinia-shared-state)
+[![bundle size](https://badgen.net/bundlephobia/minzip/pinia-shared-state)](https://bundlephobia.com/result?p=pinia-shared-state)
+
 A lightweight module to sync your pinia state across browser tabs using the [BroadcastChannel API](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API). Supports Vue 2 and 3.
 
 ## Requirements
