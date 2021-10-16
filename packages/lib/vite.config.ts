@@ -11,10 +11,11 @@ module.exports = defineConfig({
       fileName: format => `${pkg.name}.${format}.js`  
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'broadcast-channel'],
       output: {
         globals: {
-          vue: 'Vue'
+          vue: 'Vue',
+          'broadcast-channel': 'BroadcastChannel'
         }
       }
     }
