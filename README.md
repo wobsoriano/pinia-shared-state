@@ -68,6 +68,7 @@ export default defineComponent({
 
 - [pinia](https://pinia.esm.dev/) - 🍍 Intuitive, type safe, light and flexible Store for Vue using the composition api with DevTools support.
 - [vue-demi](https://github.com/vueuse/vue-demi/) - Creates Universal Library for Vue 2 & 3.
+- [broadcast-channel](https://github.com/pubkey/broadcast-channel) - BroadcastChannel to send data between different browser-tabs or nodejs-processes.
 
 ## License
 
