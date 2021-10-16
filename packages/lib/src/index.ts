@@ -1,15 +1,6 @@
 import { watch } from 'vue-demi';
+import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
 import type { PiniaPluginContext, Store } from 'pinia';
-
-declare global {
-  interface Window {
-    __SHARED_PINIA_USED_CHANNELS__: Set<string>;
-  }
-}
-
-export function isSupported() {
-  return 'BroadcastChannel' in window;
-}
 
 /**
  * Share state across browser tabs.
@@ -36,19 +27,9 @@ export function share<T extends Store, K extends keyof T['$state']>(
 ): { sync: () => void, unshare: () => void } {
   const channelName = `shared-${store['$id']}-${key.toString()}`;
 
-  if (process.env.NODE_ENV !== 'production') {
-      if (!window.__SHARED_PINIA_USED_CHANNELS__) {
-          window.__SHARED_PINIA_USED_CHANNELS__ = new Set();
-      }
-      if (window.__SHARED_PINIA_USED_CHANNELS__.has(channelName)) {
-          console.warn(`Channel with name "${channelName}" already exists.`);
-          // @ts-expect-error: Shared properties using the same channel name.
-          return;
-      }
-      window.__SHARED_PINIA_USED_CHANNELS__.add(channelName);
-  }
-
-  let channel = new BroadcastChannel(channelName);
+  const channel = new BroadcastChannelImpl(channelName, {
+    type: 'localstorage'
+  });
   let externalUpdate = false;
   let timestamp = 0;
 
@@ -65,24 +46,21 @@ export function share<T extends Store, K extends keyof T['$state']>(
   );
 
   channel.onmessage = (evt) => {
-    if (evt.data === undefined) {
+    if (evt === undefined) {
       channel.postMessage({ timestamp: timestamp, state: store[key] });
       return;
     }
-    if (evt.data.timestamp <= timestamp) {
+    if (evt.timestamp <= timestamp) {
       return;
     }
     externalUpdate = true;
-    timestamp = evt.data.timestamp;
-    store[key] = evt.data.state;
+    timestamp = evt.timestamp;
+    store[key] = evt.state;
   }
 
   const sync = () => channel.postMessage(undefined);
   const unshare = () => {
-    channel.close();
-    if (process.env.NODE_ENV !== 'production') {
-        window.__SHARED_PINIA_USED_CHANNELS__.delete(channelName);
-    }
+    return channel.close();
   };
 
   // fetches any available state
@@ -115,10 +93,6 @@ const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state'])
  */
 export const PiniaSharedState = ({ initialize = true, enable = true } = {}) => {
   return ({ store, options }: PiniaPluginContext) => {
-    if (!isSupported()) {
-      console.error('BroadcastChannel API is not supported in this device.');
-      return;
-    }
     const isEnabled = options?.share?.enable ?? enable
     const omittedKeys = options?.share?.omit ?? [];
     if (!isEnabled) return;
