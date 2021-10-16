@@ -51,17 +51,12 @@ Don't want to use it as a plugin? You can share state on your own:
 
 ```js
 import { defineComponent } from 'vue'
-import { share, unshare, isSupported } from 'pinia-shared-state'
+import { share, unshare } from 'pinia-shared-state'
 import useStore from './store'
 
 export default defineComponent({
     setup() {
         const counterStore = useStore()
-
-        // Check if BroadcastChannel API is supported
-        if (isSupported()) {
-            share('counter', counterStore, { initialize: true })
-        }
         
         // Call `unshare` method to close the channel
         unshare()
