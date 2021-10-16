@@ -25,7 +25,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
   store: T,
   { initialize }: { initialize: boolean }
 ): { sync: () => void, unshare: () => void } {
-  const channelName = `shared-${store['$id']}-${key.toString()}`;
+  const channelName = `${store['$id']}-${key.toString()}`;
 
   const channel = new BroadcastChannelImpl(channelName, {
     type: 'localstorage'
