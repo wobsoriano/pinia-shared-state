@@ -232,11 +232,6 @@
     "@vue/compiler-dom" "3.2.1"
     "@vue/shared" "3.2.1"
 
-"@vue/devtools-api@^6.0.0-beta.15":
-  version "6.0.0-beta.15"
-  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.0.0-beta.15.tgz#ad7cb384e062f165bcf9c83732125bffbc2ad83d"
-  integrity sha512-quBx4Jjpexo6KDiNUGFr/zF/2A4srKM9S9v2uHgMXSU//hjgq1eGzqkIFql8T9gfX5ZaVOUzYBP3jIdIR3PKIA==
-
 "@vue/devtools-api@^6.0.0-beta.20.1":
   version "6.0.0-beta.20.1"
   resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.0.0-beta.20.1.tgz#5b499647e929c35baf2a66a399578f9aa4601142"
@@ -1006,14 +1001,6 @@ pinia@^2.0.4:
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.20.1"
     vue-demi "*"
-
-pinia@beta:
-  version "2.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/pinia/-/pinia-2.0.0-rc.3.tgz#de384bcac19b7b64a8e4615496b54975722182fd"
-  integrity sha512-7MqF7sx1mymrdVcWKHAFsAwMdYKdcvKNmZ4KlgWgQbrDwQ7eU3o4qzFZJU/+b7I+pmXZ7hr154ENrBfjpQjeyQ==
-  dependencies:
-    "@vue/devtools-api" "^6.0.0-beta.15"
-    vue-demi latest
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
