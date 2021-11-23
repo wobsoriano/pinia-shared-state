@@ -1,6 +1,6 @@
 {
   "name": "pinia-shared-state",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "main": "./dist/pinia-shared-state.umd.js",
   "module": "./dist/pinia-shared-state.es.js",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "broadcast-channel": "^4.2.0",
-    "pinia": "beta",
+    "pinia": "^2.0.4",
     "vue-demi": "latest"
   },
   "peerDependencies": {
