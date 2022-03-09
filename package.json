@@ -24,7 +24,7 @@
     "node_modules"
   ],
   "lint-staged": {
-    "{packages,app}/**/*.{js,ts,vue,md}": [
+    "{packages,apps}/**/*.{js,ts,vue,md}": [
       "eslint --fix"
     ]
   },

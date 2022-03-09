@@ -1,15 +1,15 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import { createPinia } from 'pinia';
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import { PiniaSharedState } from 'pinia-shared-state'
+import App from './App.vue'
 
-const app = createApp(App);
+const app = createApp(App)
 
-const pinia = createPinia();
+const pinia = createPinia()
 pinia.use(PiniaSharedState({
-    enable: false
+  enable: false,
 }))
 
-app.use(pinia);
+app.use(pinia)
 
-app.mount('#app');
+app.mount('#app')
