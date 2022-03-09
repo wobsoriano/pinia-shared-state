@@ -8,8 +8,27 @@
     "copy:md": "cp README.md packages/plugin/README.md && cp LICENSE.md packages/plugin/LICENSE.md"
   },
   "devDependencies": {
-    "typescript": "^4.5.3",
+    "@antfu/eslint-config": "^0.18.3",
+    "eslint": "^8.10.0",
+    "lint-staged": "^12.3.5",
     "pinia": "^2.0.11",
+    "simple-git-hooks": "^2.7.0",
+    "typescript": "^4.5.3",
     "vue": "^3.2.31"
+  },
+  "eslintConfig": {
+    "extends": "@antfu"
+  },
+  "eslintIgnore": [
+    "dist",
+    "node_modules"
+  ],
+  "lint-staged": {
+    "{packages,app}/**/*.{js,ts,vue,md}": [
+      "eslint --fix"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
   }
 }
