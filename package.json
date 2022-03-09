@@ -1,13 +1,15 @@
 {
-    "name": "monorepo",
-    "private": true,
-    "workspaces": [
-      "packages/*"
-    ],
-    "scripts": {
-      "lib:watch": "yarn workspace pinia-shared-state run build:watch",
-      "lib": "yarn workspace pinia-shared-state",
-      "demo": "yarn workspace demo",
-      "copy:md": "cp README.md packages/lib/README.md && cp LICENSE.md packages/lib/LICENSE.md"
-    }
+  "name": "monorepo",
+  "private": true,
+  "scripts": {
+    "plugin": "pnpm -C packages/plugin",
+    "playground": "pnpm -C apps/web",
+    "clean": "rm -rf node_modules && pnpm -r clean",
+    "copy:md": "cp README.md packages/plugin/README.md && cp LICENSE.md packages/plugin/LICENSE.md"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.3",
+    "pinia": "^2.0.11",
+    "vue": "^3.2.31"
+  }
 }

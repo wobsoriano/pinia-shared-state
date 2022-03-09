@@ -7,61 +7,62 @@ A lightweight module to sync your pinia state across browser tabs. Supports Vue 
 
 ## Requirements
 
-- pinia@beta
 - vue ^2.6.14 || ^3.2.0
 
 ## Install
 
 ```sh
-yarn add pinia@beta pinia-shared-state
+pnpm add pinia@beta pinia-shared-state
 ```
 
 ## Usage
 
 ```js
-import { PiniaSharedState } from 'pinia-shared-state'
+import { PiniaSharedState } from "pinia-shared-state";
 
 // Pass the plugin to your application's pinia plugin
-pinia.use(PiniaSharedState({
+pinia.use(
+  PiniaSharedState({
     // Enables the plugin for all stores. Defaults to true.
     enable: true,
     // If set to true this tab tries to immediately recover the shared state from another tab. Defaults to true.
-    initialize: false
-}))
+    initialize: false,
+  })
+);
 ```
 
 ```js
 const useStore = defineStore({
-  id: 'counter',
+  id: "counter",
   state: () => ({
-      count: 0,
-      foo: 'bar'
+    count: 0,
+    foo: "bar",
   }),
   share: {
-      // An array of fields that the plugin will ignore.
-      omit: ['foo'],
-      // Override global config for this store.
-      enable: true,
-      initialize: true
-  }
+    // An array of fields that the plugin will ignore.
+    omit: ["foo"],
+    // Override global config for this store.
+    enable: true,
+    initialize: true,
+  },
 });
 ```
 
 Don't want to use it as a plugin? You can share state on your own:
 
 ```js
-import { defineComponent } from 'vue'
-import { share, unshare } from 'pinia-shared-state'
-import useStore from './store'
+import { defineComponent } from "vue";
+import { share, unshare } from "pinia-shared-state";
+import useStore from "./store";
 
 export default defineComponent({
-    setup() {
-        const counterStore = useStore()
-        
-        // Call `unshare` method to close the channel
-        unshare()
-    }
-})
+  setup() {
+    const counterStore = useStore();
+
+    // Call `unshare` method to close the channel
+    unshare();
+  },
+});
 ```
 
 ## Credits
