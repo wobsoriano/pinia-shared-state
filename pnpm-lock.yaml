@@ -22,6 +22,7 @@ importers:
 
   apps/web:
     specifiers:
+      '@types/node': ^17.0.21
       '@vitejs/plugin-vue': ^2.2.4
       '@vue/compiler-sfc': ^3.2.0
       gh-pages: ^3.2.3
@@ -35,6 +36,7 @@ importers:
       pinia-shared-state: link:../../packages/plugin
       typescript: 4.6.2
     devDependencies:
+      '@types/node': 17.0.21
       '@vitejs/plugin-vue': 2.2.4_vite@2.8.6+vue@3.2.31
       '@vue/compiler-sfc': 3.2.31
       gh-pages: 3.2.3
@@ -284,6 +286,10 @@ packages:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: true
+
+  /@types/node/17.0.21:
+    resolution: {integrity: sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:

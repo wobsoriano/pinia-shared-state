@@ -13,6 +13,7 @@
     "typescript": "^4.5.3"
   },
   "devDependencies": {
+    "@types/node": "^17.0.21",
     "@vitejs/plugin-vue": "^2.2.4",
     "@vue/compiler-sfc": "^3.2.0",
     "gh-pages": "^3.2.3",
