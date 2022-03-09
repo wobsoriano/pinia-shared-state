@@ -12,7 +12,7 @@ A lightweight module to sync your pinia state across browser tabs. Supports Vue 
 ## Install
 
 ```sh
-pnpm add pinia@beta pinia-shared-state
+pnpm add pinia pinia-shared-state
 ```
 
 ## Usage
