@@ -5,7 +5,8 @@
     "plugin": "pnpm -C packages/plugin",
     "playground": "pnpm -C apps/web",
     "clean": "rm -rf node_modules && pnpm -r clean",
-    "copy:md": "cp README.md packages/plugin/README.md && cp LICENSE.md packages/plugin/LICENSE.md"
+    "copy:md": "cp README.md packages/plugin/README.md && cp LICENSE.md packages/plugin/LICENSE.md",
+    "lint": "eslint \"**/*.{vue,ts,js}\""
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.18.3",

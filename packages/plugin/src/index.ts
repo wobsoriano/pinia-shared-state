@@ -1,6 +1,6 @@
-import { watch } from 'vue-demi';
-import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
-import type { PiniaPluginContext, Store } from 'pinia';
+import { watch } from 'vue-demi'
+import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
+import type { PiniaPluginContext, Store } from 'pinia'
 
 /**
  * Share state across browser tabs.
@@ -11,7 +11,7 @@ import type { PiniaPluginContext, Store } from 'pinia';
  * import useStore from './store'
  *
  * const counterStore = useStore()
- * 
+ *
  * share('counter', counterStore, { initialize: true })
  * ```
  *
@@ -23,50 +23,49 @@ import type { PiniaPluginContext, Store } from 'pinia';
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
-  { initialize }: { initialize: boolean }
-): { sync: () => void, unshare: () => void } {
-  const channelName = `${store['$id']}-${key.toString()}`;
+  { initialize }: { initialize: boolean },
+): { sync: () => void; unshare: () => void } {
+  const channelName = `${store.$id}-${key.toString()}`
 
   const channel = new BroadcastChannelImpl(channelName, {
-    type: 'localstorage'
-  });
-  let externalUpdate = false;
-  let timestamp = 0;
+    type: 'localstorage',
+  })
+  let externalUpdate = false
+  let timestamp = 0
 
   watch(
     () => store[key],
     (state) => {
       if (!externalUpdate) {
-        timestamp = Date.now();
-        channel.postMessage({ timestamp, state });
+        timestamp = Date.now()
+        channel.postMessage({ timestamp, state })
       }
-      externalUpdate = false;
+      externalUpdate = false
     },
-    { deep: true }
-  );
+    { deep: true },
+  )
 
   channel.onmessage = (evt) => {
     if (evt === undefined) {
-      channel.postMessage({ timestamp: timestamp, state: store[key] });
-      return;
+      channel.postMessage({ timestamp, state: store[key] })
+      return
     }
-    if (evt.timestamp <= timestamp) {
-      return;
-    }
-    externalUpdate = true;
-    timestamp = evt.timestamp;
-    store[key] = evt.state;
+    if (evt.timestamp <= timestamp)
+      return
+
+    externalUpdate = true
+    timestamp = evt.timestamp
+    store[key] = evt.state
   }
 
-  const sync = () => channel.postMessage(undefined);
+  const sync = () => channel.postMessage(undefined)
   const unshare = () => {
-    return channel.close();
-  };
+    return channel.close()
+  }
 
   // fetches any available state
-  if (initialize) {
-    sync();
-  }
+  if (initialize)
+    sync()
 
   return { sync, unshare }
 }
@@ -94,19 +93,20 @@ const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state'])
 export const PiniaSharedState = ({ initialize = true, enable = true } = {}) => {
   return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable
-    const omittedKeys = options?.share?.omit ?? [];
-    if (!isEnabled) return;
-    
+    const omittedKeys = options?.share?.omit ?? []
+    if (!isEnabled) return
+
     Object.keys(store.$state).forEach((key) => {
-      if (omittedKeys.includes(key) || !stateHasKey(key, store.$state)) return;
+      if (omittedKeys.includes(key) || !stateHasKey(key, store.$state)) return
       share(key, store, {
-        initialize: options?.share?.initialize ?? initialize
-      });
-    });
+        initialize: options?.share?.initialize ?? initialize,
+      })
+    })
   }
 }
 
 declare module 'pinia' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   export interface DefineStoreOptionsBase<S, Store> {
     /**
      * Override global config.
@@ -130,9 +130,9 @@ declare module 'pinia' {
      * ```
      */
     share?: {
-      omit?: Array<keyof S>;
-      enable?: boolean;
-      initialize?: boolean;
+      omit?: Array<keyof S>
+      enable?: boolean
+      initialize?: boolean
     }
   }
 }

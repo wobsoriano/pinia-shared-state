@@ -1,17 +1,21 @@
 <template>
-    <div class="counter">
-      <h1 class="count" v-text="counterStore.count"></h1>
-      <div class="button__wrapper">
-        <button @click="counterStore.decrement">-</button>
-        <button @click="counterStore.increment">+</button>
-      </div>
+  <div class="counter">
+    <h1 class="count" v-text="counterStore.count" />
+    <div class="button__wrapper">
+      <button @click="counterStore.decrement">
+        -
+      </button>
+      <button @click="counterStore.increment">
+        +
+      </button>
     </div>
-  </template>
+  </div>
+</template>
 
 <script setup lang="ts">
-import { useCounterStore } from "./store";
+import { useCounterStore } from './store'
 
-const counterStore = useCounterStore();
+const counterStore = useCounterStore()
 </script>
 
 <style>
