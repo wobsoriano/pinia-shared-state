@@ -28,14 +28,7 @@
     "vue-demi": "latest"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.1.0",
-    "vue": "^2.6.14 || ^3.2.0",
     "pinia": "^2.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
-    }
   },
   "files": [
     "dist"
