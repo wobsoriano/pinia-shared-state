@@ -1,4 +1,5 @@
 import { watch } from 'vue-demi'
+import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { PiniaPluginContext, Store } from 'pinia'
 
@@ -23,12 +24,12 @@ import type { PiniaPluginContext, Store } from 'pinia'
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
-  { initialize }: { initialize: boolean },
+  { initialize, type = 'native' }: { initialize: boolean; type?: MethodType },
 ): { sync: () => void; unshare: () => void } {
   const channelName = `${store.$id}-${key.toString()}`
 
   const channel = new BroadcastChannelImpl(channelName, {
-    type: 'localstorage',
+    type,
   })
   let externalUpdate = false
   let timestamp = 0
@@ -83,14 +84,15 @@ const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state'])
  * import { PiniaSharedState } from 'pinia-shared-state'
  *
  * // Pass the plugin to your application's pinia plugin
- * pinia.use(PiniaSharedState({ enable: true, initialize: false }))
+ * pinia.use(PiniaSharedState({ enable: true, initialize: false, type: 'localstorage' }))
  * ```
  *
  * @param options - Global plugin options.
  * @param options.enable - Enable/disable sharing of state for all stores.
  * @param options.initialize - Immediately recover the shared state from another tab.
+ * @param options.type - 'native', 'idb', 'localstorage', 'node'.
  */
-export const PiniaSharedState = ({ initialize = true, enable = true } = {}) => {
+export const PiniaSharedState = ({ initialize = true, enable = true, type = 'native' }: { initialize?: boolean; enable?: boolean; type?: MethodType }) => {
   return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable
     const omittedKeys = options?.share?.omit ?? []
@@ -100,6 +102,7 @@ export const PiniaSharedState = ({ initialize = true, enable = true } = {}) => {
       if (omittedKeys.includes(key) || !stateHasKey(key, store.$state)) return
       share(key, store, {
         initialize: options?.share?.initialize ?? initialize,
+        type,
       })
     })
   }

@@ -2,12 +2,19 @@
   "name": "pinia-shared-state",
   "version": "0.1.6",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wobsoriano/pinia-shared-state.git"
+  },
+  "files": [
+    "dist"
+  ],
   "exports": {
     "require": "./dist/index.js",
     "import": "./dist/index.mjs"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
@@ -16,10 +23,8 @@
     "release": "bumpp --commit --push --tag && pnpm publish",
     "prepublishOnly": "pnpm run build"
   },
-  "devDependencies": {
-    "bumpp": "^7.1.1",
-    "tsup": "^5.11.13",
-    "typescript": "^4.5.3"
+  "peerDependencies": {
+    "pinia": "^2.0.0"
   },
   "dependencies": {
     "broadcast-channel": "^4.2.0",
@@ -27,14 +32,9 @@
     "vue": "^3.2.31",
     "vue-demi": "latest"
   },
-  "peerDependencies": {
-    "pinia": "^2.0.0"
-  },
-  "files": [
-    "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wobsoriano/pinia-shared-state.git"
+  "devDependencies": {
+    "bumpp": "^7.1.1",
+    "tsup": "^5.11.13",
+    "typescript": "^4.5.3"
   }
 }

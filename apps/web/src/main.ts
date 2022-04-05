@@ -8,6 +8,7 @@ const app = createApp(App)
 const pinia = createPinia()
 pinia.use(PiniaSharedState({
   enable: false,
+  type: 'native',
 }))
 
 app.use(pinia)
