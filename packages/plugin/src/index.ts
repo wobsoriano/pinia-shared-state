@@ -20,6 +20,7 @@ import type { PiniaPluginContext, Store } from 'pinia'
  * @param store - The store the plugin will augment.
  * @param options - Share state options.
  * @param options.initialize - Immediately recover the shared state from another tab.
+ * @param options.type - 'native', 'idb', 'localstorage', 'node'.
  */
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
