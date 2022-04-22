@@ -5,8 +5,12 @@
     "plugin": "pnpm -C packages/plugin",
     "playground": "pnpm -C apps/web",
     "clean": "rm -rf node_modules && pnpm -r clean",
-    "copy:md": "cp README.md packages/plugin/README.md && cp LICENSE.md packages/plugin/LICENSE.md",
     "lint": "eslint \"**/*.{vue,ts,js}\""
+  },
+  "lint-staged": {
+    "{packages,apps}/**/*.{js,ts,vue,md}": [
+      "eslint --fix"
+    ]
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.18.3",
@@ -24,11 +28,6 @@
     "dist",
     "node_modules"
   ],
-  "lint-staged": {
-    "{packages,apps}/**/*.{js,ts,vue,md}": [
-      "eslint --fix"
-    ]
-  },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   }
