@@ -40,7 +40,10 @@ export function share<T extends Store, K extends keyof T['$state']>(
     (state) => {
       if (!externalUpdate) {
         timestamp = Date.now()
-        channel.postMessage({ timestamp, state })
+        channel.postMessage({
+          timestamp,
+          state: JSON.parse(JSON.stringify(state)),
+        });
       }
       externalUpdate = false
     },
@@ -49,7 +52,10 @@ export function share<T extends Store, K extends keyof T['$state']>(
 
   channel.onmessage = (evt) => {
     if (evt === undefined) {
-      channel.postMessage({ timestamp, state: store[key] })
+      channel.postMessage({
+        timestamp,
+        state: JSON.parse(JSON.stringify(store[key])),
+      });
       return
     }
     if (evt.timestamp <= timestamp)
