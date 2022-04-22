@@ -5,7 +5,8 @@
     "plugin": "pnpm -C packages/plugin",
     "playground": "pnpm -C apps/web",
     "clean": "rm -rf node_modules && pnpm -r clean",
-    "lint": "eslint \"**/*.{vue,ts,js}\""
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "lint-staged": {
     "{packages,apps}/**/*.{js,ts,vue,md}": [
