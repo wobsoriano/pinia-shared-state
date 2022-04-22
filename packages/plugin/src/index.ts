@@ -2,6 +2,7 @@ import { watch } from 'vue-demi'
 import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { PiniaPluginContext, Store } from 'pinia'
+import safeStringify from '@sindresorhus/safe-stringify'
 
 /**
  * Share state across browser tabs.
@@ -42,7 +43,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
         timestamp = Date.now()
         channel.postMessage({
           timestamp,
-          state: JSON.parse(JSON.stringify(state)),
+          state: JSON.parse(safeStringify(state)),
         })
       }
       externalUpdate = false
@@ -54,7 +55,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
     if (evt === undefined) {
       channel.postMessage({
         timestamp,
-        state: JSON.parse(JSON.stringify(store[key])),
+        state: JSON.parse(safeStringify(store[key])),
       })
       return
     }
