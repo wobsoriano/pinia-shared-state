@@ -55,6 +55,9 @@ You can also share state directly without installing the plugin:
 ```ts
 import { onMounted, onUnmounted } from 'vue';
 import { share, unshare } from 'pinia-shared-state';
+import useStore from './store';
+
+const counterStore = useStore();
 
 onMounted(() => {
   share('counter', counterStore, { initialize: true });
