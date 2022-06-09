@@ -14,13 +14,13 @@
     ]
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.18.3",
-    "eslint": "^8.10.0",
+    "@antfu/eslint-config": "^0.25.1",
+    "eslint": "^8.17.0",
     "lint-staged": "^12.3.5",
-    "pinia": "^2.0.11",
+    "pinia": "^2.0.14",
     "simple-git-hooks": "^2.7.0",
     "typescript": "^4.5.3",
-    "vue": "^3.2.31"
+    "vue": "^3.2.37"
   },
   "eslintConfig": {
     "extends": "@antfu"
