@@ -6,9 +6,6 @@
     "type": "git",
     "url": "https://github.com/wobsoriano/pinia-shared-state.git"
   },
-  "files": [
-    "dist"
-  ],
   "exports": {
     "require": "./dist/index.js",
     "import": "./dist/index.mjs"
@@ -16,6 +13,9 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "pnpm run build --watch",
     "build-fast": "tsup src/index.ts --format cjs,esm",
@@ -31,12 +31,12 @@
     "@sindresorhus/safe-stringify": "^0.1.1",
     "broadcast-channel": "^4.13.0",
     "pinia": "^2.0.14",
-    "vue": "^3.2.37",
     "vue-demi": "latest"
   },
   "devDependencies": {
     "bumpp": "^7.1.1",
     "tsup": "^5.11.13",
-    "typescript": "^4.5.3"
+    "typescript": "^4.5.3",
+    "vue": "^3.2.37"
   }
 }
