@@ -18,7 +18,7 @@ pnpm add pinia pinia-shared-state
 ## Usage
 
 ```js
-import { PiniaSharedState } from 'pinia-shared-state'
+import { PiniaSharedState } from 'pinia-shared-state';
 
 // Pass the plugin to your application's pinia plugin
 pinia.use(
@@ -30,7 +30,7 @@ pinia.use(
     // Enforce a type. One of native, idb, localstorage or node. Defaults to native.
     type: 'localstorage',
   }),
-)
+);
 ```
 
 ```js
@@ -47,24 +47,24 @@ const useStore = defineStore({
     enable: true,
     initialize: true,
   },
-})
+});
 ```
 
 You can also share state directly without installing the plugin:
 
 ```js
-import { defineComponent } from 'vue'
-import { share, unshare } from 'pinia-shared-state'
-import useStore from './store'
+import { defineComponent } from 'vue';
+import { share, unshare } from 'pinia-shared-state';
+import useStore from './store';
 
 export default defineComponent({
   setup() {
-    const counterStore = useStore()
+    const counterStore = useStore();
 
     // Call `unshare` method to close the channel
-    unshare()
+    unshare();
   },
-})
+});
 ```
 
 ## Credits

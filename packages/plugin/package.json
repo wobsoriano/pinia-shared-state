@@ -17,10 +17,11 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
+    "dev": "pnpm run build --watch",
     "build-fast": "tsup src/index.ts --format cjs,esm",
-    "build": "pnpm run build-fast -- --dts-resolve --minify",
+    "build": "pnpm run build-fast --dts-resolve --minify",
     "clean": "rm -rf node_modules dist",
-    "release": "bumpp --commit --push --tag && pnpm publish",
+    "release": "bumpp --commit --push --tag && npm publish",
     "prepublishOnly": "pnpm run build"
   },
   "peerDependencies": {
@@ -28,9 +29,9 @@
   },
   "dependencies": {
     "@sindresorhus/safe-stringify": "^0.1.1",
-    "broadcast-channel": "^4.2.0",
-    "pinia": "^2.0.11",
-    "vue": "^3.2.31",
+    "broadcast-channel": "^4.13.0",
+    "pinia": "^2.0.14",
+    "vue": "^3.2.37",
     "vue-demi": "latest"
   },
   "devDependencies": {

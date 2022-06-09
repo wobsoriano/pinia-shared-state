@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useCounterStore } from './store';
+
+const counterStore = useCounterStore();
+</script>
+
 <template>
   <div class="counter">
     <h1 class="count" v-text="counterStore.count" />
@@ -11,12 +17,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useCounterStore } from './store'
-
-const counterStore = useCounterStore()
-</script>
 
 <style>
 *,

@@ -1,7 +1,9 @@
 {
   "name": "monorepo",
   "private": true,
+  "packageManager": "pnpm@7.1.9",
   "scripts": {
+    "dev": "nr --parallel --filter demo --filter pinia-shared-state dev",
     "plugin": "pnpm -C packages/plugin",
     "playground": "pnpm -C apps/web",
     "clean": "rm -rf node_modules && pnpm -r clean",
@@ -15,21 +17,29 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.1",
+    "@antfu/ni": "^0.16.2",
     "eslint": "^8.17.0",
     "lint-staged": "^12.3.5",
-    "pinia": "^2.0.14",
+    "pnpm": "^7.1.9",
     "simple-git-hooks": "^2.7.0",
-    "typescript": "^4.5.3",
-    "vue": "^3.2.37"
+    "typescript": "^4.5.3"
   },
-  "eslintConfig": {
-    "extends": "@antfu"
-  },
-  "eslintIgnore": [
-    "dist",
-    "node_modules"
-  ],
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
+  },
+  "eslintConfig": {
+    "extends": "@antfu",
+    "rules": {
+      "semi": [
+        2,
+        "always"
+      ],
+      "@typescript-eslint/semi": [
+        2,
+        "always"
+      ],
+      "curly": "off",
+      "@typescript-eslint/brace-style": "off"
+    }
   }
 }
