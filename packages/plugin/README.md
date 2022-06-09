@@ -52,18 +52,17 @@ const useStore = defineStore({
 
 You can also share state directly without installing the plugin:
 
-```js
-import { defineComponent } from 'vue';
+```ts
+import { onMounted, onUnmounted } from 'vue';
 import { share, unshare } from 'pinia-shared-state';
-import useStore from './store';
 
-export default defineComponent({
-  setup() {
-    const counterStore = useStore();
+onMounted(() => {
+  share('counter', counterStore, { initialize: true });
+});
 
-    // Call `unshare` method to close the channel
-    unshare();
-  },
+onUnmounted(() => {
+  // Call `unshare` method to close the channel
+  unshare();
 });
 ```
 
