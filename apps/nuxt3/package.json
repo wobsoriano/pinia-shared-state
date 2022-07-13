@@ -1,5 +1,5 @@
 {
-  "name": "playground",
+  "name": "nuxt3",
   "private": true,
   "scripts": {
     "build": "nuxt build",
