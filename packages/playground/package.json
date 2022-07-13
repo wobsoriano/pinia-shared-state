@@ -1,0 +1,16 @@
+{
+  "name": "playground",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "pinia-shared-state": "workspace:*"
+  },
+  "devDependencies": {
+    "nuxt": "3.0.0-rc.5"
+  }
+}
