@@ -4,6 +4,7 @@
   "packageManager": "pnpm@7.5.0",
   "scripts": {
     "dev": "nr --parallel --filter demo --filter pinia-shared-state dev",
+    "nuxt:dev": "nr --parallel --filter demo --filter pinia-shared-state dev",
     "plugin": "pnpm -C packages/plugin",
     "playground": "pnpm -C apps/web",
     "clean": "rm -rf node_modules && pnpm -r clean",
