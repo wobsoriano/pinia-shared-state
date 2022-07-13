@@ -1,7 +1,7 @@
 {
   "name": "monorepo",
   "private": true,
-  "packageManager": "pnpm@7.1.9",
+  "packageManager": "pnpm@7.5.0",
   "scripts": {
     "dev": "nr --parallel --filter demo --filter pinia-shared-state dev",
     "plugin": "pnpm -C packages/plugin",
@@ -10,22 +10,22 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "lint-staged": {
-    "{packages,apps}/**/*.{js,ts,vue,md}": [
-      "eslint --fix"
-    ]
-  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.1",
     "@antfu/ni": "^0.16.2",
     "eslint": "^8.17.0",
     "lint-staged": "^12.3.5",
-    "pnpm": "^7.1.9",
+    "pnpm": "^7.5.0",
     "simple-git-hooks": "^2.7.0",
     "typescript": "^4.5.3"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "{packages,apps}/**/*.{js,ts,vue,md}": [
+      "eslint --fix"
+    ]
   },
   "eslintConfig": {
     "extends": "@antfu",
