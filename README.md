@@ -1,1 +1,1 @@
-packages/plugin/README.md
+packages/pinia-shared-state/README.md
