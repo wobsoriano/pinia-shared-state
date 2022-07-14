@@ -24,11 +24,11 @@ importers:
     specifiers:
       '@pinia/nuxt': ^0.3.0
       nuxt: 3.0.0-rc.5
-      pinia: ^2.0.14
+      pinia: ^2.0.16
       pinia-shared-state: workspace:*
     dependencies:
       '@pinia/nuxt': 0.3.0
-      pinia: 2.0.14
+      pinia: 2.0.16
       pinia-shared-state: link:../../packages/pinia-shared-state
     devDependencies:
       nuxt: 3.0.0-rc.5
@@ -39,14 +39,14 @@ importers:
       '@vitejs/plugin-vue': ^2.3.3
       '@vue/compiler-sfc': ^3.2.0
       gh-pages: ^3.2.3
-      pinia: ^2.0.14
+      pinia: ^2.0.16
       pinia-shared-state: workspace:*
       typescript: ^4.5.3
       vite: ^2.9.10
       vue: ^3.2.37
       vue-tsc: ^0.37.3
     dependencies:
-      pinia: 2.0.14_nosfbq5qlb74kg54iuf727q7nu
+      pinia: 2.0.16_nosfbq5qlb74kg54iuf727q7nu
       pinia-shared-state: link:../../packages/pinia-shared-state
       typescript: 4.6.2
       vue: 3.2.37
@@ -63,20 +63,20 @@ importers:
       '@sindresorhus/safe-stringify': ^0.1.1
       broadcast-channel: ^4.13.0
       bumpp: ^7.1.1
-      pinia: ^2.0.14
+      pinia: ^2.0.16
       tsup: ^5.11.13
-      typescript: ^4.5.3
+      typescript: ^4.6.3
       vue: ^3.2.37
       vue-demi: latest
     dependencies:
       '@sindresorhus/safe-stringify': 0.1.1
       broadcast-channel: 4.13.0
-      pinia: 2.0.14_nosfbq5qlb74kg54iuf727q7nu
+      pinia: 2.0.16_j6bzmzd4ujpabbp5objtwxyjp4
       vue-demi: 0.13.4_vue@3.2.37
     devDependencies:
       bumpp: 7.1.1
-      tsup: 5.12.0_typescript@4.6.2
-      typescript: 4.6.2
+      tsup: 5.12.0_typescript@4.7.4
+      typescript: 4.7.4
       vue: 3.2.37
 
 packages:
@@ -457,8 +457,8 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/runtime/7.18.3:
-    resolution: {integrity: sha512-38Y8f7YUhce/K7RMwTp7m0uCumpv9hZkitCbBClqQIow1qSbCvGkcegKOXpEWCQLfWmevgRiWokZ1GkpfhbZug==}
+  /@babel/runtime/7.18.6:
+    resolution: {integrity: sha512-t9wi7/AW6XtKahAe20Yw0/mMljKq0B1r2fPdvaAdV/KPDZewFXdaaa6K7lxmZBZ8FBNpCiAT6iHPmd6QO9bKfQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.9
@@ -861,7 +861,7 @@ packages:
     resolution: {integrity: sha512-x/T8GAfpLAF/a5I06frgl7Aj+X9Ld3fvBhQ6xtinHsXivbrUSL1UNJof8JKEAZBwKX33CoCyeGWbXfOtpyODug==}
     dependencies:
       '@nuxt/kit': 3.0.0-rc.5
-      pinia: 2.0.14
+      pinia: 2.0.16
     transitivePeerDependencies:
       - '@vue/composition-api'
       - esbuild
@@ -1638,7 +1638,7 @@ packages:
   /broadcast-channel/4.13.0:
     resolution: {integrity: sha512-fcDr8QNJ4SOb6jyjUNZatVNmcHtSWfW4PFcs4xIEFZAtorKCIFoEYtjIjaQ4c0jrbr/Bl8NIwOWiLSyspoAnEQ==}
     dependencies:
-      '@babel/runtime': 7.18.3
+      '@babel/runtime': 7.18.6
       detect-node: 2.1.0
       microtime: 3.0.0
       oblivious-set: 1.1.1
@@ -5031,8 +5031,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /pinia/2.0.14:
-    resolution: {integrity: sha512-0nPuZR4TetT/WcLN+feMSjWJku3SQU7dBbXC6uw+R6FLQJCsg+/0pzXyD82T1FmAYe0lsx+jnEDQ1BLgkRKlxA==}
+  /pinia/2.0.16:
+    resolution: {integrity: sha512-9/LMVO+/epny1NBfC77vnps4g3JRezxhhoF1xLUk8mZkUIxVnwfEAIRiAX8mYBTD/KCwZqnDMqXc8w3eU0FQGg==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
@@ -5047,8 +5047,26 @@ packages:
       vue-demi: 0.13.4
     dev: false
 
-  /pinia/2.0.14_nosfbq5qlb74kg54iuf727q7nu:
-    resolution: {integrity: sha512-0nPuZR4TetT/WcLN+feMSjWJku3SQU7dBbXC6uw+R6FLQJCsg+/0pzXyD82T1FmAYe0lsx+jnEDQ1BLgkRKlxA==}
+  /pinia/2.0.16_j6bzmzd4ujpabbp5objtwxyjp4:
+    resolution: {integrity: sha512-9/LMVO+/epny1NBfC77vnps4g3JRezxhhoF1xLUk8mZkUIxVnwfEAIRiAX8mYBTD/KCwZqnDMqXc8w3eU0FQGg==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.1.4
+      typescript: 4.7.4
+      vue: 3.2.37
+      vue-demi: 0.13.4_vue@3.2.37
+    dev: false
+
+  /pinia/2.0.16_nosfbq5qlb74kg54iuf727q7nu:
+    resolution: {integrity: sha512-9/LMVO+/epny1NBfC77vnps4g3JRezxhhoF1xLUk8mZkUIxVnwfEAIRiAX8mYBTD/KCwZqnDMqXc8w3eU0FQGg==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
@@ -6345,7 +6363,7 @@ packages:
     resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
     dev: true
 
-  /tsup/5.12.0_typescript@4.6.2:
+  /tsup/5.12.0_typescript@4.7.4:
     resolution: {integrity: sha512-FGZZNikQYGlEPtKEnz04hEniEO9ctP0rfWOdDeJCpFY4sqQe+TE90YNsv/1g0FshXoGYAOTFDYAVHg6Ovh003Q==}
     hasBin: true
     peerDependencies:
@@ -6368,7 +6386,7 @@ packages:
       source-map: 0.7.3
       sucrase: 3.20.3
       tree-kill: 1.2.2
-      typescript: 4.6.2
+      typescript: 4.7.4
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -6423,6 +6441,11 @@ packages:
 
   /typescript/4.6.2:
     resolution: {integrity: sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+
+  /typescript/4.7.4:
+    resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
 
@@ -6590,7 +6613,7 @@ packages:
   /unload/2.3.1:
     resolution: {integrity: sha512-MUZEiDqvAN9AIDRbbBnVYVvfcR6DrjCqeU2YQMmliFZl9uaBUjTkhuDQkBiyAy8ad5bx1TXVbqZ3gg7namsWjA==}
     dependencies:
-      '@babel/runtime': 7.18.3
+      '@babel/runtime': 7.18.6
       detect-node: 2.1.0
     dev: false
 

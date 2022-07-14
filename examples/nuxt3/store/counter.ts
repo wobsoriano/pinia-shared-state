@@ -18,7 +18,7 @@ export const useCounterStore = defineStore({
     },
   },
 
-  share: {
-    enable: true,
-  },
+  // share: {
+  //   enable: true,
+  // },
 });
