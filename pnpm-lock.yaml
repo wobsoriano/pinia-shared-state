@@ -20,7 +20,7 @@ importers:
       simple-git-hooks: 2.7.0
       typescript: 4.6.2
 
-  apps/nuxt3:
+  examples/nuxt3:
     specifiers:
       '@pinia/nuxt': ^0.3.0
       nuxt: 3.0.0-rc.5
@@ -33,7 +33,7 @@ importers:
     devDependencies:
       nuxt: 3.0.0-rc.5
 
-  apps/vite:
+  examples/vite:
     specifiers:
       '@types/node': ^17.0.21
       '@vitejs/plugin-vue': ^2.3.3
@@ -1280,7 +1280,7 @@ packages:
   /@vue/compiler-sfc/3.2.37:
     resolution: {integrity: sha512-+7i/2+9LYlpqDv+KTtWhOZH+pa8/HnX/905MdVmAcI/mPQOBwkHHIzrsEsucyOIZQYMkXUiTkmZq5am/NyXKkg==}
     dependencies:
-      '@babel/parser': 7.18.4
+      '@babel/parser': 7.18.8
       '@vue/compiler-core': 3.2.37
       '@vue/compiler-dom': 3.2.37
       '@vue/compiler-ssr': 3.2.37
@@ -1303,7 +1303,7 @@ packages:
   /@vue/reactivity-transform/3.2.37:
     resolution: {integrity: sha512-IWopkKEb+8qpu/1eMKVeXrK0NLw9HicGviJzhJDEyfxTR9e1WtpnnbYkJWurX6WwoFP0sz10xQg8yL8lgskAZg==}
     dependencies:
-      '@babel/parser': 7.18.4
+      '@babel/parser': 7.18.8
       '@vue/compiler-core': 3.2.37
       '@vue/shared': 3.2.37
       estree-walker: 2.0.2
@@ -5710,7 +5710,7 @@ packages:
     peerDependencies:
       rollup: ^2.0.0
     dependencies:
-      '@babel/code-frame': 7.16.7
+      '@babel/code-frame': 7.18.6
       jest-worker: 26.6.2
       rollup: 2.76.0
       serialize-javascript: 4.0.0
@@ -5735,14 +5735,6 @@ packages:
     resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
     dependencies:
       estree-walker: 0.6.1
-    dev: true
-
-  /rollup/2.70.0:
-    resolution: {integrity: sha512-iEzYw+syFxQ0X9RefVwhr8BA2TNJsTaX8L8dhyeyMECDbmiba+8UQzcu+xZdji0+JQ+s7kouQnw+9Oz5M19XKA==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /rollup/2.76.0:
@@ -6745,7 +6737,7 @@ packages:
     dependencies:
       '@babel/core': 7.18.6
       '@babel/standalone': 7.18.8
-      '@babel/types': 7.18.4
+      '@babel/types': 7.18.8
       scule: 0.2.1
     transitivePeerDependencies:
       - supports-color
@@ -6803,7 +6795,7 @@ packages:
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0-0
     dependencies:
-      '@babel/code-frame': 7.16.7
+      '@babel/code-frame': 7.18.6
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       chokidar: 3.5.3
@@ -6840,7 +6832,7 @@ packages:
       esbuild: 0.14.49
       postcss: 8.4.14
       resolve: 1.22.0
-      rollup: 2.70.0
+      rollup: 2.76.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
