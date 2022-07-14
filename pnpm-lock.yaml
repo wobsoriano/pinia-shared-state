@@ -60,7 +60,7 @@ importers:
 
   packages/pinia-shared-state:
     specifiers:
-      '@sindresorhus/safe-stringify': ^0.1.1
+      '@nuxt/devalue': ^2.0.0
       broadcast-channel: ^4.13.0
       bumpp: ^7.1.1
       pinia: ^2.0.16
@@ -69,7 +69,7 @@ importers:
       vue: ^3.2.37
       vue-demi: latest
     dependencies:
-      '@sindresorhus/safe-stringify': 0.1.1
+      '@nuxt/devalue': 2.0.0
       broadcast-channel: 4.13.0
       pinia: 2.0.16_j6bzmzd4ujpabbp5objtwxyjp4
       vue-demi: 0.13.4_vue@3.2.37
@@ -643,7 +643,6 @@ packages:
 
   /@nuxt/devalue/2.0.0:
     resolution: {integrity: sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==}
-    dev: true
 
   /@nuxt/kit/3.0.0-rc.1:
     resolution: {integrity: sha512-S2x0zdLYLZ4/2lMnS6emSmFPJszPJf70Y4/8gpmkPb4TArEjPNaOTCIz7tKpj/Upo71fv7cfuwYw/X0F2UAntg==}
@@ -971,11 +970,6 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
-
-  /@sindresorhus/safe-stringify/0.1.1:
-    resolution: {integrity: sha512-+tGKnryBl2bdT67Zy7ntWhxo5gto0Z30nbV7M+mGSoWsfDrjAbd3ti11iAZJC+kvGaY2IAE9XIrXc81lkwtTIw==}
-    engines: {node: '>=14.16'}
-    dev: false
 
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
