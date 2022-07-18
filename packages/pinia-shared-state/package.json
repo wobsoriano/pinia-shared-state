@@ -30,7 +30,7 @@
   "dependencies": {
     "broadcast-channel": "^4.13.0",
     "pinia": "^2.0.16",
-    "vue-demi": "latest"
+    "vue-demi": "^0.13.5"
   },
   "devDependencies": {
     "bumpp": "^7.1.1",

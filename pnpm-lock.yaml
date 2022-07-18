@@ -66,7 +66,7 @@ importers:
       tsup: ^5.11.13
       typescript: ^4.6.3
       vue: ^3.2.37
-      vue-demi: latest
+      vue-demi: ^0.13.5
     dependencies:
       broadcast-channel: 4.13.0
       pinia: 2.0.16_j6bzmzd4ujpabbp5objtwxyjp4
