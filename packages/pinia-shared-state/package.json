@@ -28,7 +28,6 @@
     "pinia": ">=2.0.14"
   },
   "dependencies": {
-    "@nuxt/devalue": "^2.0.0",
     "broadcast-channel": "^4.13.0",
     "pinia": "^2.0.16",
     "vue-demi": "latest"

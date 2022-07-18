@@ -60,7 +60,6 @@ importers:
 
   packages/pinia-shared-state:
     specifiers:
-      '@nuxt/devalue': ^2.0.0
       broadcast-channel: ^4.13.0
       bumpp: ^7.1.1
       pinia: ^2.0.16
@@ -69,10 +68,9 @@ importers:
       vue: ^3.2.37
       vue-demi: latest
     dependencies:
-      '@nuxt/devalue': 2.0.0
       broadcast-channel: 4.13.0
       pinia: 2.0.16_j6bzmzd4ujpabbp5objtwxyjp4
-      vue-demi: 0.13.4_vue@3.2.37
+      vue-demi: 0.13.5_vue@3.2.37
     devDependencies:
       bumpp: 7.1.1
       tsup: 5.12.0_typescript@4.7.4
@@ -457,8 +455,8 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/runtime/7.18.6:
-    resolution: {integrity: sha512-t9wi7/AW6XtKahAe20Yw0/mMljKq0B1r2fPdvaAdV/KPDZewFXdaaa6K7lxmZBZ8FBNpCiAT6iHPmd6QO9bKfQ==}
+  /@babel/runtime/7.18.9:
+    resolution: {integrity: sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.9
@@ -643,6 +641,7 @@ packages:
 
   /@nuxt/devalue/2.0.0:
     resolution: {integrity: sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==}
+    dev: true
 
   /@nuxt/kit/3.0.0-rc.1:
     resolution: {integrity: sha512-S2x0zdLYLZ4/2lMnS6emSmFPJszPJf70Y4/8gpmkPb4TArEjPNaOTCIz7tKpj/Upo71fv7cfuwYw/X0F2UAntg==}
@@ -1632,7 +1631,7 @@ packages:
   /broadcast-channel/4.13.0:
     resolution: {integrity: sha512-fcDr8QNJ4SOb6jyjUNZatVNmcHtSWfW4PFcs4xIEFZAtorKCIFoEYtjIjaQ4c0jrbr/Bl8NIwOWiLSyspoAnEQ==}
     dependencies:
-      '@babel/runtime': 7.18.6
+      '@babel/runtime': 7.18.9
       detect-node: 2.1.0
       microtime: 3.0.0
       oblivious-set: 1.1.1
@@ -5038,7 +5037,7 @@ packages:
         optional: true
     dependencies:
       '@vue/devtools-api': 6.1.4
-      vue-demi: 0.13.4
+      vue-demi: 0.13.5
     dev: false
 
   /pinia/2.0.16_j6bzmzd4ujpabbp5objtwxyjp4:
@@ -5056,7 +5055,7 @@ packages:
       '@vue/devtools-api': 6.1.4
       typescript: 4.7.4
       vue: 3.2.37
-      vue-demi: 0.13.4_vue@3.2.37
+      vue-demi: 0.13.5_vue@3.2.37
     dev: false
 
   /pinia/2.0.16_nosfbq5qlb74kg54iuf727q7nu:
@@ -6607,7 +6606,7 @@ packages:
   /unload/2.3.1:
     resolution: {integrity: sha512-MUZEiDqvAN9AIDRbbBnVYVvfcR6DrjCqeU2YQMmliFZl9uaBUjTkhuDQkBiyAy8ad5bx1TXVbqZ3gg7namsWjA==}
     dependencies:
-      '@babel/runtime': 7.18.6
+      '@babel/runtime': 7.18.9
       detect-node: 2.1.0
     dev: false
 
@@ -6900,8 +6899,23 @@ packages:
       bundle-runner: 0.0.1
     dev: true
 
-  /vue-demi/0.13.4:
+  /vue-demi/0.13.4_vue@3.2.37:
     resolution: {integrity: sha512-KP4lq9uSz0KZbaqCllRhnxMV3mYRsRWJfdsAhZyt5bV5O1RTpoeDptBRV9NOa/JgOpfaA9ane88VF7OjWNK/DA==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.2.37
+    dev: false
+
+  /vue-demi/0.13.5:
+    resolution: {integrity: sha512-tO3K2bML3AwiHmVHeKCq6HLef2st4zBXIV5aEkoJl6HZ+gJWxWv2O8wLH8qrA3SX3lDoTDHNghLX1xZg83MXvw==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true
@@ -6913,8 +6927,8 @@ packages:
         optional: true
     dev: false
 
-  /vue-demi/0.13.4_vue@3.2.37:
-    resolution: {integrity: sha512-KP4lq9uSz0KZbaqCllRhnxMV3mYRsRWJfdsAhZyt5bV5O1RTpoeDptBRV9NOa/JgOpfaA9ane88VF7OjWNK/DA==}
+  /vue-demi/0.13.5_vue@3.2.37:
+    resolution: {integrity: sha512-tO3K2bML3AwiHmVHeKCq6HLef2st4zBXIV5aEkoJl6HZ+gJWxWv2O8wLH8qrA3SX3lDoTDHNghLX1xZg83MXvw==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true

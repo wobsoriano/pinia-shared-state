@@ -2,7 +2,7 @@ import { watch } from 'vue-demi';
 import type { MethodType } from 'broadcast-channel';
 import * as BroadcastChannelLib from 'broadcast-channel';
 import type { PiniaPluginContext, Store } from 'pinia';
-import devalue from '@nuxt/devalue';
+import { safeStringify } from './utils';
 
 const { BroadcastChannel: BroadcastChannelImpl } = BroadcastChannelLib;
 
@@ -45,7 +45,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
         timestamp = Date.now();
         channel.postMessage({
           timestamp,
-          state: JSON.parse(devalue(state)),
+          state: JSON.parse(safeStringify(state)),
         });
       }
       externalUpdate = false;
@@ -57,7 +57,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
     if (evt === undefined) {
       channel.postMessage({
         timestamp,
-        state: JSON.parse(devalue(store[key])),
+        state: JSON.parse(safeStringify(store[key])),
       });
       return;
     }
