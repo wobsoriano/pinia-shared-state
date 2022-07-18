@@ -16,9 +16,9 @@ export const useCounterStore = defineStore('counter', {
     },
   },
 
-  // share: {
-  //   enable: true,
-  // },
+  share: {
+    enable: true,
+  },
 });
 
 if (import.meta.hot) {
