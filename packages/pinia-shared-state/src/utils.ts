@@ -1,3 +1,5 @@
+// Code taken from here https://github.com/sindresorhus/safe-stringify/blob/main/index.js
+
 const makeCircularReplacer = () => {
   const seen = new WeakMap();
 
