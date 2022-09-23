@@ -2,7 +2,7 @@ import { watch } from 'vue-demi';
 import type { MethodType } from 'broadcast-channel';
 import * as BroadcastChannelLib from 'broadcast-channel';
 import type { PiniaPluginContext, Store } from 'pinia';
-import { safeStringify } from './utils';
+import { defaultMethodType, safeStringify } from './utils';
 
 const { BroadcastChannel: BroadcastChannelImpl } = BroadcastChannelLib;
 
@@ -28,7 +28,7 @@ const { BroadcastChannel: BroadcastChannelImpl } = BroadcastChannelLib;
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
-  { initialize, type = 'native' }: { initialize: boolean; type?: MethodType },
+  { initialize, type = defaultMethodType() }: { initialize: boolean; type?: MethodType },
 ): { sync: () => void; unshare: () => void } {
   const channelName = `${store.$id}-${key.toString()}`;
 
@@ -102,7 +102,9 @@ const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state'])
  * @param options.initialize - Immediately recover the shared state from another tab.
  * @param options.type - 'native', 'idb', 'localstorage', 'node'.
  */
-export const PiniaSharedState = ({ initialize = true, enable = true, type = 'native' }: { initialize?: boolean; enable?: boolean; type?: MethodType }) => {
+export const PiniaSharedState = (
+  { initialize = true, enable = true, type = defaultMethodType() }: { initialize?: boolean; enable?: boolean; type?: MethodType },
+) => {
   return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable;
     const omittedKeys = options?.share?.omit ?? [];

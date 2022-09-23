@@ -26,7 +26,7 @@ pinia.use(
     enable: true,
     // If set to true this tab tries to immediately recover the shared state from another tab. Defaults to true.
     initialize: false,
-    // Enforce a type. One of native, idb, localstorage or node. Defaults to native.
+    // Enforce a type. One of native, idb, localstorage or node. By default try to define supported technologies.
     type: 'localstorage',
   }),
 );
