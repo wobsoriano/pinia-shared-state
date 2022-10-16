@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.3",
-    "pinia": "^2.0.16",
+    "pinia": "^2.0.23",
     "pinia-shared-state": "workspace:*"
   },
   "devDependencies": {

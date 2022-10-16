@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "broadcast-channel": "^4.18.0",
-    "pinia": "^2.0.16",
+    "pinia": "^2.0.23",
     "vue-demi": "^0.13.5"
   },
   "devDependencies": {
