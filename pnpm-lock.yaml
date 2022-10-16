@@ -66,11 +66,11 @@ importers:
       tsup: ^5.11.13
       typescript: ^4.6.3
       vue: ^3.2.37
-      vue-demi: ^0.13.5
+      vue-demi: ^0.13.11
     dependencies:
       broadcast-channel: 4.18.0
       pinia: 2.0.23_j6bzmzd4ujpabbp5objtwxyjp4
-      vue-demi: 0.13.5_vue@3.2.37
+      vue-demi: 0.13.11_vue@3.2.37
     devDependencies:
       bumpp: 7.1.1
       tsup: 5.12.0_typescript@4.7.4
@@ -7122,21 +7122,6 @@ packages:
     dependencies:
       vue: 3.2.41
     dev: true
-
-  /vue-demi/0.13.5_vue@3.2.37:
-    resolution: {integrity: sha512-tO3K2bML3AwiHmVHeKCq6HLef2st4zBXIV5aEkoJl6HZ+gJWxWv2O8wLH8qrA3SX3lDoTDHNghLX1xZg83MXvw==}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      vue: 3.2.37
-    dev: false
 
   /vue-devtools-stub/0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}
