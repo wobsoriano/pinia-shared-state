@@ -8,7 +8,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.3.0",
+    "@pinia/nuxt": "^0.4.3",
     "pinia": "^2.0.16",
     "pinia-shared-state": "workspace:*"
   },
