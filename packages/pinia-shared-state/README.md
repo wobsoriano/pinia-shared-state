@@ -2,7 +2,7 @@
 
 [![npm (tag)](https://img.shields.io/npm/v/pinia-shared-state?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/pinia-shared-state) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/pinia-shared-state?style=flat&colorA=000000&colorB=000000) ![NPM](https://img.shields.io/npm/l/pinia-shared-state?style=flat&colorA=000000&colorB=000000)
 
-A lightweight module to sync your pinia state across browser tabs. Supports Vue 2 and 3.
+Sync your Pinia state across browser tabs. Supports Vue 2 and 3.
 
 ## Requirements
 
