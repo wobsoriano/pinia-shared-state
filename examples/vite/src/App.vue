@@ -6,7 +6,7 @@ const counterStore = useCounterStore();
 
 <template>
   <div class="counter">
-    <h1 class="count" v-text="counterStore.count" />
+    <h1 class="count" v-text="counterStore.foo.count" />
     <div class="button__wrapper">
       <button @click="counterStore.decrement">
         -
