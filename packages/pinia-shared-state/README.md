@@ -49,7 +49,7 @@ const useStore = defineStore({
 });
 ```
 
-You can also share state directly without installing the plugin:
+Manual state sharing is also possible:
 
 ```ts
 import { onMounted, onUnmounted } from 'vue';
