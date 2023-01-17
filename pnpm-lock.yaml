@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@antfu/eslint-config': ^0.34.1
-      broadcast-channel: ^4.18.0
+      broadcast-channel: ^4.20.2
       bumpp: ^8.2.1
       devalue: ^4.0.0
       eslint: ^8.28.0
@@ -17,15 +17,15 @@ importers:
       vue: ^3.2.45
       vue-demi: ^0.13.11
     dependencies:
-      broadcast-channel: 4.18.0
+      broadcast-channel: 4.20.2
       devalue: 4.0.0
-      pinia: 2.0.23_prq2uz4lho2pwp6irk4cfkrxwu
       vue-demi: 0.13.11_vue@3.2.45
     devDependencies:
       '@antfu/eslint-config': 0.34.1_7uibuqfxkfaozanbtbziikiqje
       bumpp: 8.2.1
       eslint: 8.32.0
       lint-staged: 12.3.5
+      pinia: 2.0.23_prq2uz4lho2pwp6irk4cfkrxwu
       simple-git-hooks: 2.7.0
       tsup: 6.5.0_typescript@4.9.4
       typescript: 4.9.4
@@ -433,11 +433,11 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/runtime/7.19.4:
-    resolution: {integrity: sha512-EXpLCrk55f+cYqmHsSR+yD/0gAIMxxA9QK9lnQWzhMCvt+YmoBN7Zx94s++Kv0+unHk39vxNO8t+CMA2WSS3wA==}
+  /@babel/runtime/7.20.7:
+    resolution: {integrity: sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      regenerator-runtime: 0.13.10
+      regenerator-runtime: 0.13.11
     dev: false
 
   /@babel/standalone/7.19.5:
@@ -1302,7 +1302,6 @@ packages:
 
   /@vue/devtools-api/6.4.4:
     resolution: {integrity: sha512-Ku31WzpOV/8cruFaXaEZKF81WkNnvCSlBY4eOGtz5WMSdJvX1v1WWlSMGZeqUwPtQ27ZZz7B62erEMq8JDjcXw==}
-    dev: false
 
   /@vue/reactivity-transform/3.2.37:
     resolution: {integrity: sha512-IWopkKEb+8qpu/1eMKVeXrK0NLw9HicGviJzhJDEyfxTR9e1WtpnnbYkJWurX6WwoFP0sz10xQg8yL8lgskAZg==}
@@ -1749,14 +1748,14 @@ packages:
     dependencies:
       fill-range: 7.0.1
 
-  /broadcast-channel/4.18.0:
-    resolution: {integrity: sha512-jxCERZ/fV8LJUVWSGC8U687cYTB67XWn/DVcsYQ9MNpL3Lo2/x0pq8QcfSNTDKBQjAxgp7JQO5pOR8Gcw73Ajw==}
+  /broadcast-channel/4.20.2:
+    resolution: {integrity: sha512-v0lJgMzC+MX4e2KCFWYXChZ2mKTqm5mnJGId6tqJp3NfylggbNd8c2uKeP4MQxD2ucKOesY68aN98zwl9d6Tvg==}
     dependencies:
-      '@babel/runtime': 7.19.4
+      '@babel/runtime': 7.20.7
       oblivious-set: 1.1.1
       p-queue: 6.6.2
       rimraf: 3.0.2
-      unload: 2.3.1
+      unload: 2.4.1
     dev: false
 
   /browserslist/4.21.4:
@@ -2373,10 +2372,6 @@ packages:
     resolution: {integrity: sha512-463v3ZeIrcWtdgIg6vI6XUncguvr2TnGl4SzDXinkt9mSLpBJKXT3mW6xT3VQdDN11+WVs29pgvivTc4Lp8v+w==}
     engines: {node: '>=8'}
     dev: true
-
-  /detect-node/2.1.0:
-    resolution: {integrity: sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==}
-    dev: false
 
   /devalue/4.0.0:
     resolution: {integrity: sha512-w25siwXyuMUqMr7jPlEjyNCp1vn0Jzj/fNg3qVt/r/Dpe8HjESh2V92L0jmh3uq4iJt0BvjH+Azk1pQzkcnDWA==}
@@ -5421,7 +5416,7 @@ packages:
       typescript: 4.9.4
       vue: 3.2.45
       vue-demi: 0.13.11_vue@3.2.45
-    dev: false
+    dev: true
 
   /pinkie-promise/2.0.1:
     resolution: {integrity: sha512-0Gni6D4UcLTbv9c57DfxDGdr41XfgUjqWZu492f0cIGr16zDU06BWP/RAEvOuo7CQ0CNjHaLlM59YJJFm3NWlw==}
@@ -5939,8 +5934,8 @@ packages:
       redis-errors: 1.2.0
     dev: true
 
-  /regenerator-runtime/0.13.10:
-    resolution: {integrity: sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==}
+  /regenerator-runtime/0.13.11:
+    resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
     dev: false
 
   /regexp-tree/0.1.24:
@@ -6775,6 +6770,7 @@ packages:
     resolution: {integrity: sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /ufo/0.8.5:
     resolution: {integrity: sha512-e4+UtA5IRO+ha6hYklwj6r7BjiGMxS0O+UaSg9HbaTefg4kMkzj4tXzEBajRR+wkxf+golgAWKzLbytCUDMJAA==}
@@ -6842,11 +6838,8 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unload/2.3.1:
-    resolution: {integrity: sha512-MUZEiDqvAN9AIDRbbBnVYVvfcR6DrjCqeU2YQMmliFZl9uaBUjTkhuDQkBiyAy8ad5bx1TXVbqZ3gg7namsWjA==}
-    dependencies:
-      '@babel/runtime': 7.19.4
-      detect-node: 2.1.0
+  /unload/2.4.1:
+    resolution: {integrity: sha512-IViSAm8Z3sRBYA+9wc0fLQmU9Nrxb16rcDmIiR6Y9LJSZzI7QY5QsDhqPpKOjAn0O9/kfK1TfNEMMAGPTIraPw==}
     dev: false
 
   /unplugin/0.9.6:
@@ -7119,7 +7112,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.45
-    dev: false
 
   /vue-devtools-stub/0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}

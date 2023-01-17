@@ -28,7 +28,7 @@
     "pinia": ">=2.0.14"
   },
   "dependencies": {
-    "broadcast-channel": "^4.18.0",
+    "broadcast-channel": "^4.20.2",
     "devalue": "^4.0.0",
     "vue-demi": "^0.13.11"
   },
