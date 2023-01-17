@@ -7,7 +7,7 @@ importers:
       '@antfu/eslint-config': ^0.34.1
       broadcast-channel: ^4.20.2
       bumpp: ^8.2.1
-      devalue: ^4.0.0
+      devalue: ^4.2.2
       eslint: ^8.28.0
       lint-staged: ^12.3.5
       pinia: ^2.0.23
@@ -18,7 +18,7 @@ importers:
       vue-demi: ^0.13.11
     dependencies:
       broadcast-channel: 4.20.2
-      devalue: 4.0.0
+      devalue: 4.2.2
       vue-demi: 0.13.11_vue@3.2.45
     devDependencies:
       '@antfu/eslint-config': 0.34.1_7uibuqfxkfaozanbtbziikiqje
@@ -2373,8 +2373,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /devalue/4.0.0:
-    resolution: {integrity: sha512-w25siwXyuMUqMr7jPlEjyNCp1vn0Jzj/fNg3qVt/r/Dpe8HjESh2V92L0jmh3uq4iJt0BvjH+Azk1pQzkcnDWA==}
+  /devalue/4.2.2:
+    resolution: {integrity: sha512-Pkwd8qrI9O20VJ14fBNHu+on99toTNZFbgWRpZbC0zbDXpnE2WHYcrC1fHhMsF/3Ee+2yaW7vEujAT7fCYgqrA==}
     dev: false
 
   /dir-glob/3.0.1:
