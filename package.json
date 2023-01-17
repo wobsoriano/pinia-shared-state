@@ -37,7 +37,7 @@
     "bumpp": "^8.2.1",
     "eslint": "^8.28.0",
     "lint-staged": "^12.3.5",
-    "pinia": "^2.0.23",
+    "pinia": "^2.0.29",
     "simple-git-hooks": "^2.7.0",
     "tsup": "^6.5.0",
     "typescript": "^4.9.3",
