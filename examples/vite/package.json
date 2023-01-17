@@ -8,18 +8,17 @@
     "deploy": "pnpm build && gh-pages -d dist"
   },
   "dependencies": {
-    "pinia": "^2.0.23",
+    "pinia": "^2.0.29",
     "pinia-shared-state": "workspace:*",
     "typescript": "^4.5.3",
-    "vue": "^3.2.37"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
-    "@types/node": "^17.0.21",
-    "@vitejs/plugin-vue": "^2.3.3",
-    "@vue/compiler-sfc": "^3.2.0",
+    "@types/node": "^18.11.18",
+    "@vitejs/plugin-vue": "^4.0.0",
     "gh-pages": "^3.2.3",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.10",
-    "vue-tsc": "^0.37.3"
+    "typescript": "^4.9.3",
+    "vite": "^4.0.4",
+    "vue-tsc": "^1.0.24"
   }
 }
