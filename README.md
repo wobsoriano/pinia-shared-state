@@ -1,1 +1,0 @@
-packages/pinia-shared-state/README.md

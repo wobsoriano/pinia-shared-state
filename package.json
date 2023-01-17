@@ -1,21 +1,47 @@
 {
-  "name": "monorepo",
-  "private": true,
-  "packageManager": "pnpm@7.5.0",
+  "name": "pinia-shared-state",
+  "packageManager": "pnpm@7.25.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wobsoriano/pinia-shared-state.git"
+  },
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.mjs"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dev:vite": "nr --parallel --filter vite --filter pinia-shared-state dev",
-    "dev:nuxt": "nr --parallel --filter nuxt3 --filter pinia-shared-state dev",
+    "build": "tsup",
+    "dev": "pnpm build --watch --onSuccess=\"pnpm --filter vite dev\"",
+    "release": "bumpp && npm publish",
+    "prepublishOnly": "npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "peerDependencies": {
+    "pinia": ">=2.0.14"
+  },
+  "dependencies": {
+    "broadcast-channel": "^4.18.0",
+    "devalue": "^4.0.0",
+    "vue-demi": "^0.13.11"
+  },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.25.1",
-    "@antfu/ni": "^0.16.2",
-    "eslint": "^8.17.0",
+    "@antfu/eslint-config": "^0.34.1",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.28.0",
     "lint-staged": "^12.3.5",
-    "pnpm": "^7.5.0",
+    "pinia": "^2.0.23",
     "simple-git-hooks": "^2.7.0",
-    "typescript": "^4.5.3"
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.3",
+    "vue": "^3.2.45"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

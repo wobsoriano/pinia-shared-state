@@ -1,0 +1,15 @@
+{
+  "extends": "@antfu",
+  "rules": {
+    "semi": [
+      2,
+      "always"
+    ],
+    "@typescript-eslint/semi": [
+      2,
+      "always"
+    ],
+    "curly": "off",
+    "@typescript-eslint/brace-style": "off"
+  }
+}
