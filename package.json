@@ -1,5 +1,6 @@
 {
   "name": "pinia-shared-state",
+  "version": "0.2.10",
   "packageManager": "pnpm@7.25.0",
   "license": "MIT",
   "repository": {
