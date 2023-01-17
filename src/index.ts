@@ -1,10 +1,8 @@
 import { watch } from 'vue-demi';
 import type { MethodType } from 'broadcast-channel';
-import * as BroadcastChannelLib from 'broadcast-channel';
+import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
 import type { PiniaPluginContext, Store } from 'pinia';
 import * as devalue from 'devalue';
-
-const { BroadcastChannel: BroadcastChannelImpl } = BroadcastChannelLib;
 
 /**
  * Share state across browser tabs.
