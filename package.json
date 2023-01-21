@@ -38,20 +38,10 @@
     "@antfu/eslint-config": "^0.34.1",
     "bumpp": "^8.2.1",
     "eslint": "^8.28.0",
-    "lint-staged": "^12.3.5",
     "pinia": "^2.0.29",
-    "simple-git-hooks": "^2.7.0",
     "tsup": "^6.5.0",
     "typescript": "^4.9.3",
     "vue": "^3.2.45"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
-  },
-  "lint-staged": {
-    "{packages,apps}/**/*.{js,ts,vue,md}": [
-      "eslint --fix"
-    ]
   },
   "eslintConfig": {
     "extends": "@antfu",
