@@ -7,7 +7,6 @@ importers:
       '@antfu/eslint-config': ^0.34.1
       broadcast-channel: ^4.20.2
       bumpp: ^8.2.1
-      devalue: ^4.2.2
       eslint: ^8.28.0
       pinia: ^2.0.29
       realistic-structured-clone: ^3.0.0
@@ -17,7 +16,6 @@ importers:
       vue-demi: ^0.13.11
     dependencies:
       broadcast-channel: 4.20.2
-      devalue: 4.2.2
       realistic-structured-clone: 3.0.0
       vue-demi: 0.13.11_vue@3.2.45
     devDependencies:
@@ -2470,10 +2468,6 @@ packages:
     resolution: {integrity: sha512-463v3ZeIrcWtdgIg6vI6XUncguvr2TnGl4SzDXinkt9mSLpBJKXT3mW6xT3VQdDN11+WVs29pgvivTc4Lp8v+w==}
     engines: {node: '>=8'}
     dev: true
-
-  /devalue/4.2.2:
-    resolution: {integrity: sha512-Pkwd8qrI9O20VJ14fBNHu+on99toTNZFbgWRpZbC0zbDXpnE2WHYcrC1fHhMsF/3Ee+2yaW7vEujAT7fCYgqrA==}
-    dev: false
 
   /dir-glob/3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}

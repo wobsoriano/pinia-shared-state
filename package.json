@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "broadcast-channel": "^4.20.2",
-    "devalue": "^4.2.2",
     "realistic-structured-clone": "^3.0.0",
     "vue-demi": "^0.13.11"
   },
