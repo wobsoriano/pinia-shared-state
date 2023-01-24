@@ -29,8 +29,8 @@
     "pinia": ">=2.0.14"
   },
   "dependencies": {
+    "@ungap/structured-clone": "^1.0.1",
     "broadcast-channel": "^4.20.2",
-    "realistic-structured-clone": "^3.0.0",
     "vue-demi": "^0.13.11"
   },
   "devDependencies": {

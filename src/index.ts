@@ -2,7 +2,7 @@ import { watch } from 'vue-demi';
 import type { MethodType } from 'broadcast-channel';
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
 import type { PiniaPluginContext, Store } from 'pinia';
-import structuredClone from 'realistic-structured-clone';
+import structuredClone from '@ungap/structured-clone';
 
 /**
  * Share state across browser tabs.
