@@ -2,7 +2,7 @@ import { watch } from 'vue-demi';
 import type { MethodType } from 'broadcast-channel';
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
 import type { PiniaPluginContext, Store } from 'pinia';
-import structuredClone from '@ungap/structured-clone';
+import * as devalue from 'devalue';
 
 /**
  * Share state across browser tabs.
@@ -43,7 +43,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
         timestamp = Date.now();
         channel.postMessage({
           timestamp,
-          state: structuredClone(state),
+          state: devalue.parse(devalue.stringify(state)),
         });
       }
       externalUpdate = false;
@@ -55,7 +55,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
     if (evt === undefined) {
       channel.postMessage({
         timestamp,
-        state: structuredClone(store[key]),
+        state: devalue.parse(devalue.stringify(store[key])),
       });
       return;
     }
