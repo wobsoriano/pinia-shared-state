@@ -43,18 +43,6 @@
     "vue": "^3.3.2"
   },
   "eslintConfig": {
-    "extends": "@antfu",
-    "rules": {
-      "semi": [
-        2,
-        "always"
-      ],
-      "@typescript-eslint/semi": [
-        2,
-        "always"
-      ],
-      "curly": "off",
-      "@typescript-eslint/brace-style": "off"
-    }
+    "extends": "@antfu"
   }
 }

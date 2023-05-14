@@ -79,9 +79,9 @@ export function share<T extends Store, K extends keyof T['$state']>(
   return { sync, unshare };
 }
 
-const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state']) => {
+function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state']) {
   return Object.keys($state).includes(key);
-};
+}
 
 /**
  * Adds a `share` option to your store to share state across browser tabs.
@@ -100,7 +100,7 @@ const stateHasKey = (key: string, $state: PiniaPluginContext['store']['$state'])
  * @param options.initialize - Immediately recover the shared state from another tab.
  * @param options.type - 'native', 'idb', 'localstorage', 'node'.
  */
-export const PiniaSharedState = ({ initialize = true, enable = true, type }: { initialize?: boolean; enable?: boolean; type?: MethodType }) => {
+export function PiniaSharedState({ initialize = true, enable = true, type }: { initialize?: boolean; enable?: boolean; type?: MethodType }) {
   return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable;
     const omittedKeys = options?.share?.omit ?? [];
@@ -116,10 +116,11 @@ export const PiniaSharedState = ({ initialize = true, enable = true, type }: { i
       });
     });
   };
-};
+}
 
 declare module 'pinia' {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+  // eslint-disable-next-line unused-imports/no-unused-vars
   export interface DefineStoreOptionsBase<S, Store> {
     /**
      * Override global config.
