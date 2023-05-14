@@ -8,11 +8,11 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.4.6",
-    "pinia": "^2.0.29",
+    "@pinia/nuxt": "^0.4.10",
+    "pinia": "^2.0.36",
     "pinia-shared-state": "workspace:*"
   },
   "devDependencies": {
-    "nuxt": "3.0.0"
+    "nuxt": "3.4.3"
   }
 }
