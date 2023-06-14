@@ -65,7 +65,9 @@ export function share<T extends Store, K extends keyof T['$state']>(
 
     externalUpdate = true;
     timestamp = evt.timestamp;
-    store[key] = evt.state;
+    store.$patch((state: any) => {
+      state[key] = evt.state;
+    });
   };
 
   const sync = () => channel.postMessage(undefined);
