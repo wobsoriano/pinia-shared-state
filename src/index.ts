@@ -3,8 +3,6 @@ import type { MethodType } from 'broadcast-channel';
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
 import type { PiniaPluginContext, Store } from 'pinia';
 
-// import { serialize, deserialize } from 'seroval';
-
 /**
  * Share state across browser tabs.
  *
