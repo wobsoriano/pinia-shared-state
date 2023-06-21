@@ -59,7 +59,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
     if (evt === undefined) {
       channel.postMessage({
         timestamp,
-        state: toRaw(store[key]),
+        state: removeProxy(store[key]),
       });
       return;
     }
