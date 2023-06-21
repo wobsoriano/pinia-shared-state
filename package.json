@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "broadcast-channel": "^5.1.0",
+    "devalue": "^4.3.2",
     "vue-demi": "^0.14.5"
   },
   "devDependencies": {

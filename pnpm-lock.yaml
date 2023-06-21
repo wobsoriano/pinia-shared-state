@@ -11,6 +11,9 @@ importers:
       broadcast-channel:
         specifier: ^5.1.0
         version: 5.1.0
+      devalue:
+        specifier: ^4.3.2
+        version: 4.3.2
       vue-demi:
         specifier: ^0.14.5
         version: 0.14.5(vue@3.3.4)
@@ -2496,7 +2499,6 @@ packages:
 
   /devalue@4.3.2:
     resolution: {integrity: sha512-KqFl6pOgOW+Y6wJgu80rHpo2/3H07vr8ntR9rkkFIRETewbf5GaYYcakYfiKz89K+sLsuPkQIZaXDMjUObZwWg==}
-    dev: true
 
   /dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}

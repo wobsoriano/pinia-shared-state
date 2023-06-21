@@ -1,7 +1,12 @@
-import { toRaw, watch } from 'vue-demi';
+import { isProxy, toRaw, watch } from 'vue-demi';
 import type { MethodType } from 'broadcast-channel';
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
 import type { PiniaPluginContext, Store } from 'pinia';
+import * as devalue from 'devalue';
+
+function removeProxy<T>(state: T): T {
+  return isProxy(state) ? toRaw(state) : devalue.parse(devalue.stringify(state));
+}
 
 /**
  * Share state across browser tabs.
@@ -42,7 +47,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
         timestamp = Date.now();
         channel.postMessage({
           timestamp,
-          state: toRaw(state),
+          state: removeProxy(state),
         });
       }
       externalUpdate = false;
