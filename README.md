@@ -49,7 +49,7 @@ const useStore = defineStore({
 });
 ```
 
-Manual state sharing is also possible:
+Vanilla usage:
 
 ```ts
 import { onMounted, onUnmounted } from 'vue';
