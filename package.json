@@ -51,8 +51,7 @@
   },
   "dependencies": {
     "broadcast-channel": "^7.0.0",
-    "devalue": "^4.3.2",
-    "vue-demi": "^0.14.5"
+    "devalue": "^4.3.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.2.1",

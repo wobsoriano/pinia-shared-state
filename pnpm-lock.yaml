@@ -14,9 +14,6 @@ importers:
       devalue:
         specifier: ^4.3.2
         version: 4.3.2
-      vue-demi:
-        specifier: ^0.14.5
-        version: 0.14.5(vue@3.3.4)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.2.1

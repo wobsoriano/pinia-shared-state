@@ -1,4 +1,4 @@
-import { watch } from 'vue-demi'
+import { watch } from 'vue'
 import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { PiniaPluginContext, Store } from 'pinia'
