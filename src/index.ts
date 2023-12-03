@@ -1,11 +1,11 @@
-import { watch } from 'vue-demi';
-import type { MethodType } from 'broadcast-channel';
-import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
-import type { PiniaPluginContext, Store } from 'pinia';
-import * as devalue from 'devalue';
+import { watch } from 'vue-demi'
+import type { MethodType } from 'broadcast-channel'
+import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
+import type { PiniaPluginContext, Store } from 'pinia'
+import * as devalue from 'devalue'
 
 function removeProxy<T>(state: T): T {
-  return devalue.parse(devalue.stringify(state));
+  return devalue.parse(devalue.stringify(state))
 }
 
 /**
@@ -30,63 +30,63 @@ function removeProxy<T>(state: T): T {
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
-  { initialize, type }: { initialize: boolean; type?: MethodType },
-): { sync: () => void; unshare: () => void } {
-  const channelName = `${store.$id}-${key.toString()}`;
+  { initialize, type }: { initialize: boolean, type?: MethodType },
+): { sync: () => void, unshare: () => void } {
+  const channelName = `${store.$id}-${key.toString()}`
 
   const channel = new BroadcastChannelImpl(channelName, {
     type,
-  });
-  let externalUpdate = false;
-  let timestamp = 0;
+  })
+  let externalUpdate = false
+  let timestamp = 0
 
   watch(
     () => store[key],
     (state) => {
       if (!externalUpdate) {
-        timestamp = Date.now();
+        timestamp = Date.now()
         channel.postMessage({
           timestamp,
           state: removeProxy(state),
-        });
+        })
       }
-      externalUpdate = false;
+      externalUpdate = false
     },
     { deep: true },
-  );
+  )
 
   channel.onmessage = (evt) => {
     if (evt === undefined) {
       channel.postMessage({
         timestamp,
         state: removeProxy(store[key]),
-      });
-      return;
+      })
+      return
     }
     if (evt.timestamp <= timestamp)
-      return;
+      return
 
-    externalUpdate = true;
-    timestamp = evt.timestamp;
+    externalUpdate = true
+    timestamp = evt.timestamp
     store.$patch((state: any) => {
-      state[key] = evt.state;
-    });
-  };
+      state[key] = evt.state
+    })
+  }
 
-  const sync = () => channel.postMessage(undefined);
+  const sync = () => channel.postMessage(undefined)
   const unshare = () => {
-    return channel.close();
-  };
+    return channel.close()
+  }
 
   // fetches any available state
   if (initialize)
-    sync();
+    sync()
 
-  return { sync, unshare };
+  return { sync, unshare }
 }
 
 function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state']) {
-  return Object.keys($state).includes(key);
+  return Object.keys($state).includes(key)
 }
 
 /**
@@ -106,22 +106,22 @@ function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state'])
  * @param options.initialize - Immediately recover the shared state from another tab.
  * @param options.type - 'native', 'idb', 'localstorage', 'node'.
  */
-export function PiniaSharedState({ initialize = true, enable = true, type }: { initialize?: boolean; enable?: boolean; type?: MethodType }) {
+export function PiniaSharedState({ initialize = true, enable = true, type }: { initialize?: boolean, enable?: boolean, type?: MethodType }) {
   return ({ store, options }: PiniaPluginContext) => {
-    const isEnabled = options?.share?.enable ?? enable;
-    const omittedKeys = options?.share?.omit ?? [];
+    const isEnabled = options?.share?.enable ?? enable
+    const omittedKeys = options?.share?.omit ?? []
     if (!isEnabled)
-      return;
+      return
 
     Object.keys(store.$state).forEach((key) => {
       if (omittedKeys.includes(key) || !stateHasKey(key, store.$state))
-        return;
+        return
       share(key, store, {
         initialize: options?.share?.initialize ?? initialize,
         type,
-      });
-    });
-  };
+      })
+    })
+  }
 }
 
 declare module 'pinia' {

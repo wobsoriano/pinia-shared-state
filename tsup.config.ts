@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from 'tsup'
 
 export default defineConfig({
   entry: ['src/index.ts'],
@@ -8,4 +8,4 @@ export default defineConfig({
   format: ['cjs', 'esm', 'iife'],
   globalName: 'PiniaSharedState',
   dts: true,
-});
+})

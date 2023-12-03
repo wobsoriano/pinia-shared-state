@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useCounterStore } from './store';
+import { useCounterStore } from './store'
 
-const counterStore = useCounterStore();
+const counterStore = useCounterStore()
 </script>
 
 <template>
