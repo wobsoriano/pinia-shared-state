@@ -34,6 +34,10 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8.6.0"
+  },
   "scripts": {
     "build": "tsup",
     "dev": "pnpm build --watch --onSuccess=\"pnpm --filter vite dev\"",
