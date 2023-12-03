@@ -17,7 +17,7 @@ pnpm add pinia pinia-shared-state
 ## Usage
 
 ```js
-import { PiniaSharedState } from 'pinia-shared-state';
+import { PiniaSharedState } from 'pinia-shared-state'
 
 // Pass the plugin to your application's pinia plugin
 pinia.use(
@@ -29,7 +29,7 @@ pinia.use(
     // Enforce a type. One of native, idb, localstorage or node. Defaults to native.
     type: 'localstorage',
   }),
-);
+)
 ```
 
 ```js
@@ -46,26 +46,26 @@ const useStore = defineStore({
     enable: true,
     initialize: true,
   },
-});
+})
 ```
 
 Vanilla usage:
 
 ```ts
-import { onMounted, onUnmounted } from 'vue';
-import { share, unshare } from 'pinia-shared-state';
-import useStore from './store';
+import { onMounted, onUnmounted } from 'vue'
+import { share, unshare } from 'pinia-shared-state'
+import useStore from './store'
 
-const counterStore = useStore();
+const counterStore = useStore()
 
 onMounted(() => {
-  share('counter', counterStore, { initialize: true });
-});
+  share('counter', counterStore, { initialize: true })
+})
 
 onUnmounted(() => {
   // Call `unshare` method to close the channel
-  unshare();
-});
+  unshare()
+})
 ```
 
 ## Credits
