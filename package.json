@@ -1,5 +1,6 @@
 {
   "name": "pinia-shared-state",
+  "type": "module",
   "version": "0.4.5",
   "packageManager": "pnpm@8.6.2",
   "license": "MIT",
@@ -7,14 +8,29 @@
     "type": "git",
     "url": "https://github.com/wobsoriano/pinia-shared-state.git"
   },
+  "sideEffects": false,
   "exports": {
-    "types": "./dist/index.d.ts",
-    "require": "./dist/index.js",
-    "import": "./dist/index.mjs"
+    ".": {
+      "types": {
+        "require": "./dist/index.d.cts",
+        "import": "./dist/index.d.ts"
+      },
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "unpkg": "dist/index.global.js",
+  "jsdelivr": "dist/index.global.js",
   "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],
