@@ -2,10 +2,9 @@ import { watch } from 'vue'
 import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { PiniaPluginContext, Store } from 'pinia'
-import * as devalue from 'devalue'
 
 function removeProxy<T>(state: T): T {
-  return devalue.parse(devalue.stringify(state))
+  return JSON.stringify(JSON.parse(state as unknown as string)) as T
 }
 
 /**
