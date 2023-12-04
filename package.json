@@ -1,9 +1,17 @@
 {
   "name": "pinia-shared-state",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.4.5",
   "packageManager": "pnpm@8.11.0",
+  "author": {
+    "name": "Robert Soriano",
+    "email": "sorianorobertc@gmail.com"
+  },
   "license": "MIT",
+  "funding": "https://github.com/sponsors/wobsoriano",
   "repository": {
     "type": "git",
     "url": "https://github.com/wobsoriano/pinia-shared-state.git"
@@ -41,6 +49,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "pnpm build --watch --onSuccess=\"pnpm --filter vite dev\"",
+    "dev:nuxt": "pnpm build --watch --onSuccess=\"pnpm --filter nuxt3 dev\"",
     "release": "bumpp && npm publish",
     "prepublishOnly": "npm run build",
     "lint": "eslint .",
@@ -50,7 +59,8 @@
     "pinia": "^2"
   },
   "dependencies": {
-    "broadcast-channel": "^7.0.0"
+    "broadcast-channel": "^7.0.0",
+    "vue-demi": "^0.14.6"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.2.1",

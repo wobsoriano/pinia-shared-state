@@ -1,88 +1,7 @@
-import { watch } from 'vue'
+import { toRaw } from 'vue-demi'
 import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
-import type { PiniaPluginContext, Store } from 'pinia'
-
-function removeProxy<T>(state: T): T {
-  return JSON.stringify(JSON.parse(state as unknown as string)) as T
-}
-
-/**
- * Share state across browser tabs.
- *
- * @example
- *
- * ```ts
- * import useStore from './store'
- *
- * const counterStore = useStore()
- *
- * share('counter', counterStore, { initialize: true })
- * ```
- *
- * @param key - A property of a store state.
- * @param store - The store the plugin will augment.
- * @param options - Share state options.
- * @param options.initialize - Immediately recover the shared state from another tab.
- * @param options.type - 'native', 'idb', 'localstorage', 'node'.
- */
-export function share<T extends Store, K extends keyof T['$state']>(
-  key: K,
-  store: T,
-  { initialize, type }: { initialize: boolean, type?: MethodType },
-): { sync: () => void, unshare: () => void } {
-  const channelName = `${store.$id}-${key.toString()}`
-
-  const channel = new BroadcastChannelImpl(channelName, {
-    type,
-  })
-  let externalUpdate = false
-  let timestamp = 0
-
-  watch(
-    () => store[key],
-    (state) => {
-      if (!externalUpdate) {
-        timestamp = Date.now()
-        channel.postMessage({
-          timestamp,
-          state: removeProxy(state),
-        })
-      }
-      externalUpdate = false
-    },
-    { deep: true },
-  )
-
-  channel.onmessage = (evt) => {
-    if (evt === undefined) {
-      channel.postMessage({
-        timestamp,
-        state: removeProxy(store[key]),
-      })
-      return
-    }
-    if (evt.timestamp <= timestamp)
-      return
-
-    externalUpdate = true
-    timestamp = evt.timestamp
-    store.$patch((state: any) => {
-      state[key] = evt.state
-    })
-  }
-
-  const sync = () => channel.postMessage(undefined)
-  const unshare = () => {
-    return channel.close()
-  }
-
-  // fetches any available state
-  if (initialize)
-    sync()
-
-  return { sync, unshare }
-}
+import type { PiniaPluginContext } from 'pinia'
 
 function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state']) {
   return Object.keys($state).includes(key)
@@ -105,26 +24,64 @@ function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state'])
  * @param options.initialize - Immediately recover the shared state from another tab.
  * @param options.type - 'native', 'idb', 'localstorage', 'node'.
  */
-export function PiniaSharedState({ initialize = true, enable = true, type }: { initialize?: boolean, enable?: boolean, type?: MethodType }) {
+export function PiniaSharedState({ enable = true, initialize = true, type }: { initialize?: boolean, enable?: boolean, type?: MethodType }) {
   return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable
     const omittedKeys = options?.share?.omit ?? []
     if (!isEnabled)
       return
 
-    Object.keys(store.$state).forEach((key) => {
-      if (omittedKeys.includes(key) || !stateHasKey(key, store.$state))
+    const channel = new BroadcastChannelImpl(store.$id, {
+      type,
+    })
+
+    let timestamp = 0
+    let externalUpdate = false
+
+    const keysToUpdate = Object.keys(store.$state).filter(key => !omittedKeys.includes(key) && stateHasKey(key, store.$state))
+
+    channel.onmessage = (newState) => {
+      if (newState === undefined) {
+        channel.postMessage({
+          timestamp,
+          state: toRaw(store.$state),
+        })
         return
-      share(key, store, {
-        initialize: options?.share?.initialize ?? initialize,
-        type,
+      }
+
+      if (newState.timestamp <= timestamp)
+        return
+
+      externalUpdate = true
+      timestamp = Date.now()
+
+      store.$patch((state) => {
+        keysToUpdate.forEach((key) => {
+          state[key] = newState.state[key]
+        })
       })
+    }
+
+    const shouldInitialize = options?.share?.initialize ?? initialize
+    if (shouldInitialize)
+      channel.postMessage(undefined)
+
+    store.$subscribe((_, state) => {
+      if (!externalUpdate) {
+        timestamp = Date.now()
+        channel.postMessage({
+          timestamp,
+          state: toRaw(state),
+        })
+      }
+      externalUpdate = false
     })
   }
 }
 
-declare module 'pinia' {
+export { share } from './vanilla'
 
+declare module 'pinia' {
   // eslint-disable-next-line unused-imports/no-unused-vars
   export interface DefineStoreOptionsBase<S, Store> {
     /**
