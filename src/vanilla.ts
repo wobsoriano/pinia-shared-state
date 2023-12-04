@@ -1,7 +1,7 @@
-import { toRaw } from 'vue-demi'
 import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { Store } from 'pinia'
+import { Serializer, serialize } from './utils'
 
 /**
  * Share state across browser tabs.
@@ -21,11 +21,12 @@ import type { Store } from 'pinia'
  * @param options - Share state options.
  * @param options.initialize - Immediately recover the shared state from another tab.
  * @param options.type - 'native', 'idb', 'localstorage', 'node'.
+ * @param options.serializer - Custom serializer to serialize state before broadcasting.
  */
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
-  { initialize, type }: { initialize: boolean, type?: MethodType },
+  { initialize, serializer, type }: { initialize: boolean, serializer?: Serializer, type?: MethodType },
 ): { sync: () => void, unshare: () => void } {
   const channelName = `${store.$id}-${key.toString()}`
 
@@ -40,8 +41,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
       timestamp = Date.now()
       channel.postMessage({
         timestamp,
-        // @ts-expect-error: TODO
-        newValue: toRaw(state)[key],
+        newValue: serialize(state, serializer)[key],
       })
     }
     externalUpdate = false
@@ -52,7 +52,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
       channel.postMessage({
         timestamp,
         // @ts-expect-error: TODO
-        newValue: toRaw(store.$state)[key],
+        newValue: serialize(store.$state, serializer)[key],
       })
       return
     }

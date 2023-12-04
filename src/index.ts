@@ -1,10 +1,17 @@
-import { toRaw } from 'vue-demi'
 import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { PiniaPluginContext } from 'pinia'
+import { serialize, type Serializer } from './utils'
 
 function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state']) {
   return Object.keys($state).includes(key)
+}
+
+interface Options {
+  initialize?: boolean
+  enable?: boolean
+  type?: MethodType
+  serializer?: Serializer
 }
 
 /**
@@ -23,8 +30,14 @@ function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state'])
  * @param options.enable - Enable/disable sharing of state for all stores.
  * @param options.initialize - Immediately recover the shared state from another tab.
  * @param options.type - 'native', 'idb', 'localstorage', 'node'.
+ * @param options.serializer - Custom serializer to serialize state before broadcasting.
  */
-export function PiniaSharedState({ enable = true, initialize = true, type }: { initialize?: boolean, enable?: boolean, type?: MethodType }) {
+export function PiniaSharedState({
+  enable = true,
+  initialize = true,
+  type,
+  serializer,
+}: Options) {
   return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable
     const omittedKeys = options?.share?.omit ?? []
@@ -44,7 +57,7 @@ export function PiniaSharedState({ enable = true, initialize = true, type }: { i
       if (newState === undefined) {
         channel.postMessage({
           timestamp,
-          state: toRaw(store.$state),
+          state: serialize(store.$state, serializer),
         })
         return
       }
@@ -71,7 +84,7 @@ export function PiniaSharedState({ enable = true, initialize = true, type }: { i
         timestamp = Date.now()
         channel.postMessage({
           timestamp,
-          state: toRaw(state),
+          state: serialize(state, serializer),
         })
       }
       externalUpdate = false

@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { share } from 'pinia-shared-state'
 import { useCounterStore } from './store'
 
 const counterStore = useCounterStore()
-
-onMounted(() => {
-  share('foo', counterStore, { initialize: true })
-})
 </script>
 
 <template>
