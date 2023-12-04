@@ -1,4 +1,4 @@
-import { toRaw } from 'vue'
+import { toRaw } from 'vue-demi'
 import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { Store } from 'pinia'
