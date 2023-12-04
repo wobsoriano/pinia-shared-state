@@ -7,5 +7,6 @@ export default defineConfig({
   clean: true,
   format: ['cjs', 'esm', 'iife'],
   globalName: 'PiniaSharedState',
+  external: ['vue-demi'],
   dts: true,
 })
