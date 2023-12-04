@@ -30,7 +30,7 @@ interface Options {
  * @param options.enable - Enable/disable sharing of state for all stores.
  * @param options.initialize - Immediately recover the shared state from another tab.
  * @param options.type - 'native', 'idb', 'localstorage', 'node'.
- * @param options.serializer - Custom serializer to serialize state before broadcasting.
+ * @param options.serializer - Custom serializer to serialize store state before broadcasting.
  */
 export function PiniaSharedState({
   enable = true,

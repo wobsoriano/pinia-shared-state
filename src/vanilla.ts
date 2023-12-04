@@ -1,7 +1,7 @@
 import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { Store } from 'pinia'
-import { Serializer, serialize } from './utils'
+import { type Serializer, serialize } from './utils'
 
 /**
  * Share state across browser tabs.
