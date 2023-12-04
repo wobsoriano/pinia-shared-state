@@ -3,6 +3,12 @@ import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { Store } from 'pinia'
 import { type Serializer, serialize } from './utils'
 
+export interface Options {
+  initialize?: boolean
+  type?: MethodType
+  serializer?: Serializer
+}
+
 /**
  * Share state across browser tabs.
  *
@@ -26,7 +32,7 @@ import { type Serializer, serialize } from './utils'
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
-  { initialize, serializer, type }: { initialize: boolean, serializer?: Serializer, type?: MethodType },
+  { initialize, serializer, type }: Options,
 ): { sync: () => void, unshare: () => void } {
   const channelName = `${store.$id}-${key.toString()}`
 

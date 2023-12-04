@@ -1,17 +1,10 @@
-import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { PiniaPluginContext } from 'pinia'
-import { serialize, type Serializer } from './utils'
+import { serialize } from './utils'
+import type { Options } from './vanilla'
 
 function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state']) {
   return Object.keys($state).includes(key)
-}
-
-interface Options {
-  initialize?: boolean
-  enable?: boolean
-  type?: MethodType
-  serializer?: Serializer
 }
 
 /**
@@ -37,7 +30,7 @@ export function PiniaSharedState({
   initialize = true,
   type,
   serializer,
-}: Options) {
+}: Options & { enable?: boolean }) {
   return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable
     const omittedKeys = options?.share?.omit ?? []
@@ -114,6 +107,11 @@ declare module 'pinia' {
      *     // If set to true this tab tries to immediately recover the
      *     // shared state from another tab. Defaults to true.
      *     initialize: false
+     *     // Serialize store state before broadcasting. Defaults to `JSON.stringify`/`JSON.parse`.
+     *     serializer: {
+     *      serialize: JSON.stringify
+     *      deserialize: JSON.parse
+     *     }
      *   }
      * })
      * ```

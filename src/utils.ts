@@ -5,7 +5,7 @@ export interface Serializer {
 
 export function serialize(
   obj: Record<string, unknown>,
-  serializer: Serializer = { serialize: JSON.stringify, deserialize: JSON.parse }
+  serializer: Serializer = { serialize: JSON.stringify, deserialize: JSON.parse },
 ) {
   return serializer.deserialize(serializer.serialize(obj))
 }
