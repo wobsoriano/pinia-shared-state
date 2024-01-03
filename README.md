@@ -52,7 +52,7 @@ const useStore = defineStore({
 Vanilla usage:
 
 ```ts
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted } from 'vue'
 import { share } from 'pinia-shared-state'
 import useStore from './store'
 
