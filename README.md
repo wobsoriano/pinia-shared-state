@@ -52,7 +52,7 @@ const useStore = defineStore({
 Vanilla usage:
 
 ```ts
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { share } from 'pinia-shared-state'
 import useStore from './store'
 
@@ -61,10 +61,10 @@ const counterStore = useStore()
 onMounted(() => {
   const { unshare } = share('counter', counterStore, { initialize: true })
 
-  return () => {
+  onUnmounted(() => {
     // Call `unshare` method to close the channel
     unshare()
-  }
+  })
 })
 ```
 
