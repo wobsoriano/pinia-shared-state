@@ -53,18 +53,18 @@ Vanilla usage:
 
 ```ts
 import { onMounted, onUnmounted } from 'vue'
-import { share, unshare } from 'pinia-shared-state'
+import { share } from 'pinia-shared-state'
 import useStore from './store'
 
 const counterStore = useStore()
 
 onMounted(() => {
-  share('counter', counterStore, { initialize: true })
-})
+  const { unshare } = share('counter', counterStore, { initialize: true })
 
-onUnmounted(() => {
-  // Call `unshare` method to close the channel
-  unshare()
+  return () => {
+    // Call `unshare` method to close the channel
+    unshare()
+  }
 })
 ```
 
