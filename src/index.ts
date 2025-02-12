@@ -1,6 +1,6 @@
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { PiniaPluginContext } from 'pinia'
-import { serialize } from './utils'
+import { serialize, merge } from './utils'
 import type { Options } from './vanilla'
 
 function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state']) {
@@ -24,12 +24,14 @@ function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state'])
  * @param options.initialize - Immediately recover the shared state from another tab.
  * @param options.type - 'native', 'idb', 'localstorage', 'node'.
  * @param options.serializer - Custom serializer to serialize store state before broadcasting.
+ * @param options.merger - Function to customize how incoming shared state is merged with local state.
  */
 export function PiniaSharedState({
   enable = true,
   initialize = true,
   type,
   serializer,
+  merger,
 }: Options & { enable?: boolean }) {
   return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable
@@ -63,7 +65,7 @@ export function PiniaSharedState({
 
       store.$patch((state) => {
         keysToUpdate.forEach((key) => {
-          state[key] = newState.state[key]
+          state[key] = merge(key, state[key], newState.state[key], store.$id, merger)
         })
       })
     }
@@ -111,6 +113,18 @@ declare module 'pinia' {
      *     serializer: {
      *      serialize: JSON.stringify
      *      deserialize: JSON.parse
+     *     }
+     *     // Optional: function to merge local with shared state.
+     *     merger: (key, local, shared, storeId) => {
+     *       // Selectively merge based on store ID and key
+     *       if (storeId === 'your-whitelisted-store-id') {
+     *         if (key === 'your-whitelisted-key') {
+     *           // Merge local and shared state for these specific stores and keys
+     *           return Object.assign({}, local, shared)
+     *         }
+     *       }
+     *       // Default behavior - use shared state
+     *       return shared
      *     }
      *   }
      * })

@@ -1,12 +1,13 @@
 import type { MethodType } from 'broadcast-channel'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
 import type { Store } from 'pinia'
-import { type Serializer, serialize } from './utils'
+import { type Serializer, serialize, type Merger, merge } from './utils'
 
 export interface Options {
   initialize?: boolean
   type?: MethodType
   serializer?: Serializer
+  merger?: Merger
 }
 
 /**
@@ -28,11 +29,12 @@ export interface Options {
  * @param options.initialize - Immediately recover the shared state from another tab.
  * @param options.type - 'native', 'idb', 'localstorage', 'node'.
  * @param options.serializer - Custom serializer to serialize state before broadcasting.
+ * @param options.merger - Function to customize how incoming shared state is merged with local state.
  */
 export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
-  { initialize, serializer, type }: Options,
+  { initialize, serializer, type, merger }: Options,
 ): { sync: () => void, unshare: () => void } {
   const channelName = `${store.$id}-${key.toString()}`
 
@@ -67,7 +69,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
 
     externalUpdate = true
     timestamp = evt.timestamp
-    store[key] = evt.newValue
+    store[key] = merge(key, store[key], evt.newValue, store.$id, merger)
   }
 
   const sync = () => channel.postMessage(undefined)

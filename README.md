@@ -28,6 +28,20 @@ pinia.use(
     initialize: false,
     // Enforce a type. One of native, idb, localstorage or node. Defaults to native.
     type: 'localstorage',
+    // Optional: Custom serializer for state serialization.
+    serializer: {
+      serialize: JSON.stringify,
+      deserialize: JSON.parse
+    },
+    // Optional: Custom merger function to control how shared state is merged on updates.
+    merger: (key, localState, sharedState, storeId) => {
+      // Custom merge logic based on store and/or key
+      if (storeId === 'special-store') {
+        return Object.assign({}, localState, sharedState)
+      }
+      // Default behavior - use shared state
+      return sharedState
+    },
   }),
 )
 ```
@@ -45,6 +59,19 @@ const useStore = defineStore({
     // Override global config for this store.
     enable: true,
     initialize: true,
+    // Custom serializer for this specific store.
+    serializer: {
+      serialize: JSON.stringify,
+      deserialize: JSON.parse
+    },
+    // Custom merger for this specific store.
+    merger: (key, localState, sharedState) => {
+      // Example: Merge arrays instead of replacing them.
+      if (Array.isArray(localState) && Array.isArray(sharedState)) {
+        return [...new Set([...localState, ...sharedState])]
+      }
+      return sharedState
+    }
   },
 })
 ```
