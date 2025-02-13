@@ -34,6 +34,7 @@ export function PiniaSharedState({
   return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable
     const omittedKeys = options?.share?.omit ?? []
+    const readonlyFromPaths = options?.share?.readonlyFromPaths ?? []
     if (!isEnabled)
       return
 
@@ -72,16 +73,21 @@ export function PiniaSharedState({
     if (shouldInitialize)
       channel.postMessage(undefined)
 
-    store.$subscribe((_, state) => {
-      if (!externalUpdate) {
-        timestamp = Date.now()
-        channel.postMessage({
-          timestamp,
-          state: serialize(state, serializer),
-        })
-      }
-      externalUpdate = false
-    })
+    const thisPath = window.location.pathname
+    const isNotReadonlyPath = !readonlyFromPaths.includes(thisPath)
+
+    if (isNotReadonlyPath) {
+      store.$subscribe((_, state) => {
+        if (!externalUpdate) {
+          timestamp = Date.now()
+          channel.postMessage({
+            timestamp,
+            state: serialize(state, serializer),
+          })
+        }
+        externalUpdate = false
+      })
+    }
   }
 }
 
@@ -112,6 +118,8 @@ declare module 'pinia' {
      *      serialize: JSON.stringify
      *      deserialize: JSON.parse
      *     }
+     *     // An array of paths that will not share send state updates, but will receive them.
+     *     readonlyFromPaths: ['/second-tab']
      *   }
      * })
      * ```
@@ -120,6 +128,7 @@ declare module 'pinia' {
       omit?: Array<keyof S>
       enable?: boolean
       initialize?: boolean
+      readonlyFromPaths?: string[]
     }
   }
 }
