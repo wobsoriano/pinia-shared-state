@@ -1,7 +1,7 @@
 import type { PiniaPluginContext } from 'pinia'
 import type { Options } from './vanilla'
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
-import { serialize } from './utils'
+import { deepMerge, isObject, serialize } from './utils'
 
 function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state']) {
   return Object.keys($state).includes(key)
@@ -63,7 +63,12 @@ export function PiniaSharedState({
 
       store.$patch((state) => {
         keysToUpdate.forEach((key) => {
-          state[key] = newState.state[key]
+          if (isObject(state[key]) && isObject(newState.state[key])) {
+            deepMerge(state[key], newState.state[key])
+          }
+          else {
+            state[key] = newState.state[key]
+          }
         })
       })
     }
