@@ -53,7 +53,8 @@
     "format": "eslint . --fix"
   },
   "peerDependencies": {
-    "pinia": "^3.0.0"
+    "pinia": "^3.0.0",
+    "vue": "^3.0.0"
   },
   "dependencies": {
     "broadcast-channel": "^7.0.0"
