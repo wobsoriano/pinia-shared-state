@@ -11,6 +11,15 @@ export interface Options {
 }
 
 /**
+ * Global map to count how many keys we have for each store
+ */
+const vanillaSharesMap = new Map()
+/**
+ * Global map to count how many remaining update we have for each store
+ */
+const externalUpdateMap = new Map()
+
+/**
  * Share state across browser tabs.
  *
  * @example
@@ -40,18 +49,21 @@ export function share<T extends Store, K extends keyof T['$state']>(
   const channel = new BroadcastChannelImpl(channelName, {
     type,
   })
-  let externalUpdate = false
+  const currentCount = vanillaSharesMap.get(store) ?? 0
+  vanillaSharesMap.set(store, currentCount + 1)
+  externalUpdateMap.set(store, 0)
   let timestamp = 0
 
   store.$subscribe((_, state) => {
-    if (!externalUpdate) {
+    const externalCount = externalUpdateMap.get(store)
+    if (externalCount <= 0) {
       timestamp = Date.now()
       channel.postMessage({
         timestamp,
         newValue: serialize(state, serializer)[key],
       })
     }
-    externalUpdate = false
+    externalUpdateMap.set(store, Math.max(0, externalCount - 1))
   })
 
   channel.onmessage = (evt) => {
@@ -66,7 +78,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
     if (evt.timestamp <= timestamp)
       return
 
-    externalUpdate = true
+    externalUpdateMap.set(store, vanillaSharesMap.get(store))
     timestamp = evt.timestamp
     store[key] = evt.newValue
   }
