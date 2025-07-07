@@ -85,6 +85,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
 
   const sync = () => channel.postMessage(undefined)
   const unshare = () => {
+    vanillaSharesMap.set(store, vanillaSharesMap.get(store) - 1)
     return channel.close()
   }
 
