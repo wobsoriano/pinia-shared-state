@@ -48,6 +48,7 @@ export function PiniaSharedState({
 
     channel.onmessage = (newState) => {
       if (newState === undefined) {
+        timestamp = Date.now()
         channel.postMessage({
           timestamp,
           state: serialize(store.$state, serializer),
