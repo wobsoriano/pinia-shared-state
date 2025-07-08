@@ -56,6 +56,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
 
   channel.onmessage = (evt) => {
     if (evt === undefined) {
+      timestamp = Date.now()
       channel.postMessage({
         timestamp,
         // @ts-expect-error: TODO
