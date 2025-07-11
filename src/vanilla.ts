@@ -43,7 +43,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
   let externalUpdate = false
   let timestamp = 0
 
-  store.$subscribe((_, state) => {
+  watch(() => serialize(state, serializer)[key], () => {
     if (!externalUpdate) {
       timestamp = Date.now()
       channel.postMessage({
@@ -66,9 +66,13 @@ export function share<T extends Store, K extends keyof T['$state']>(
     if (evt.timestamp <= timestamp)
       return
 
-    externalUpdate = true
     timestamp = evt.timestamp
-    store[key] = evt.newValue
+    if (store[key] !== evt.newValue) {
+      // Since we are using a watcher, it won't trigger if value are the same,
+      // and externalUpdate won't be reset to false.
+      externalUpdate = true
+      store[key] = evt.newValue
+    }
   }
 
   const sync = () => channel.postMessage(undefined)
