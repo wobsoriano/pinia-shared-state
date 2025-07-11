@@ -43,12 +43,12 @@ export function share<T extends Store, K extends keyof T['$state']>(
   let externalUpdate = false
   let timestamp = 0
 
-  watch(() => serialize(state, serializer)[key], () => {
+  watch(() => serialize(store.$state, serializer)[key], newValue => {
     if (!externalUpdate) {
       timestamp = Date.now()
       channel.postMessage({
         timestamp,
-        newValue: serialize(state, serializer)[key],
+        newValue,
       })
     }
     externalUpdate = false
