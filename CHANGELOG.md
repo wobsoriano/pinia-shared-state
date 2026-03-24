@@ -1,5 +1,11 @@
 # pinia-shared-state
 
+## 2.0.1
+
+### Patch Changes
+
+- 9de7022: Fix vanilla `share()` collisions when multiple keys are shared from the same store. Updates for one key no longer trigger unnecessary broadcasts for other shared keys.
+
 ## 2.0.0
 
 ### Major Changes
