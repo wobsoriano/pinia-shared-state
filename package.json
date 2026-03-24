@@ -49,6 +49,7 @@
     "dev:nuxt": "pnpm build --watch --onSuccess=\"pnpm --filter nuxt3 dev\"",
     "release": "pnpm build && changeset publish",
     "prepublishOnly": "npm run build",
+    "test": "vitest run",
     "lint": "eslint .",
     "format": "eslint . --fix"
   },
