@@ -1,7 +1,7 @@
 import { createPinia, defineStore, setActivePinia } from 'pinia';
 import { beforeEach, describe, expect, it, vi } from 'vite-plus/test';
 import { ref } from 'vue';
-import { share } from '../vanilla';
+import { share } from '../vanilla.js';
 
 // Registry of all mock BroadcastChannel instances, keyed by channel name.
 const channelRegistry = vi.hoisted(() => new Map<string, Set<MockBroadcastChannelInstance>>());

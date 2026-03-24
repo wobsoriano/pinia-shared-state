@@ -1,7 +1,7 @@
 import type { PiniaPluginContext } from 'pinia';
-import type { Options } from './vanilla';
+import type { Options } from './vanilla.js';
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
-import { serialize } from './utils';
+import { serialize } from './utils.js';
 
 function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state']) {
   return Object.keys($state).includes(key);
@@ -88,7 +88,7 @@ export function PiniaSharedState({
   };
 }
 
-export { share } from './vanilla';
+export { share } from './vanilla.js';
 
 declare module 'pinia' {
   // eslint-disable-next-line unused-imports/no-unused-vars

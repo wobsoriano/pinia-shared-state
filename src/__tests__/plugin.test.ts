@@ -1,7 +1,7 @@
 import { createPinia, defineStore, setActivePinia } from 'pinia';
 import { beforeEach, describe, expect, it, vi } from 'vite-plus/test';
 import { createApp, ref } from 'vue';
-import { PiniaSharedState } from '../index';
+import { PiniaSharedState } from '../index.js';
 
 // Registry of all mock BroadcastChannel instances, keyed by channel name.
 // vi.hoisted ensures this is set up before vi.mock factories run.

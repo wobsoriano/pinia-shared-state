@@ -1,8 +1,8 @@
 import type { MethodType } from 'broadcast-channel';
 import type { Store } from 'pinia';
-import type { Serializer } from './utils';
+import type { Serializer } from './utils.js';
 import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
-import { serialize } from './utils';
+import { serialize } from './utils.js';
 
 export interface Options {
   initialize?: boolean;
