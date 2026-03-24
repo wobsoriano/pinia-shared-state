@@ -43,12 +43,39 @@ export function share<T extends Store, K extends keyof T['$state']>(
   let externalUpdate = false;
   let timestamp = 0;
 
+  const valueSerializer = serializer ?? {
+    serialize: JSON.stringify,
+    deserialize: JSON.parse,
+  };
+
+  const serializeValue = (value: unknown) => {
+    return valueSerializer.serialize({ value });
+  };
+
+  const deserializeValue = (value: string) => {
+    return valueSerializer.deserialize(value).value;
+  };
+
+  const getStateValue = (state: T['$state']) => {
+    return (state as Record<string, unknown>)[key as string];
+  };
+
+  let lastSerializedValue = serializeValue(getStateValue(store.$state));
+
   store.$subscribe((_, state) => {
+    const nextSerializedValue = serializeValue(getStateValue(state as T['$state']));
+    if (nextSerializedValue === lastSerializedValue) {
+      externalUpdate = false;
+      return;
+    }
+
+    lastSerializedValue = nextSerializedValue;
+
     if (!externalUpdate) {
       timestamp = Date.now();
-      channel.postMessage({
+      void channel.postMessage({
         timestamp,
-        newValue: serialize(state, serializer)[key],
+        newValue: deserializeValue(nextSerializedValue),
       });
     }
     externalUpdate = false;
@@ -56,7 +83,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
 
   channel.onmessage = (evt) => {
     if (evt === undefined) {
-      channel.postMessage({
+      void channel.postMessage({
         timestamp,
         // @ts-expect-error: TODO
         newValue: serialize(store.$state, serializer)[key],
@@ -65,17 +92,26 @@ export function share<T extends Store, K extends keyof T['$state']>(
     }
     if (evt.timestamp <= timestamp) return;
 
-    externalUpdate = true;
+    const incomingSerializedValue = serializeValue(evt.newValue);
+
     timestamp = evt.timestamp;
+    if (incomingSerializedValue === lastSerializedValue) return;
+
+    externalUpdate = true;
+    lastSerializedValue = incomingSerializedValue;
     store.$patch({ [key as string]: evt.newValue } as Partial<typeof store.$state>);
   };
 
-  const sync = () => channel.postMessage(undefined);
+  const sync = () => {
+    void channel.postMessage(undefined);
+  };
   const unshare = () => {
     return channel.close();
   };
 
-  if (initialize) sync();
+  if (initialize) {
+    sync();
+  }
 
   return { sync, unshare };
 }
