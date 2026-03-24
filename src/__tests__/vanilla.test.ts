@@ -257,4 +257,34 @@ describe('share()', () => {
       expect(serialize).toHaveBeenCalled();
     });
   });
+
+  describe('multiple shared keys', () => {
+    it('does not rebroadcast key b when only key a is updated remotely', () => {
+      const id = `multi-${storeCounter}`;
+      const useStore = defineStore(id, () => {
+        const a = ref(false);
+        const b = ref('local');
+        return { a, b };
+      });
+
+      const pinia = createPinia();
+      setActivePinia(pinia);
+      const store = useStore();
+
+      share('a', store, { initialize: false });
+      share('b', store, { initialize: false });
+
+      const channelA = getChannel(`${id}-a`);
+      const channelB = getChannel(`${id}-b`);
+
+      expect(channelA.postedMessages).toHaveLength(0);
+      expect(channelB.postedMessages).toHaveLength(0);
+
+      channelA.onmessage?.({ timestamp: Date.now() + 10_000, newValue: true });
+
+      expect(store.a).toBe(true);
+      expect(store.b).toBe('local');
+      expect(channelB.postedMessages).toHaveLength(0);
+    });
+  });
 });
