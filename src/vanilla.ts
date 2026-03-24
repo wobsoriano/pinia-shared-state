@@ -57,7 +57,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
   };
 
   const getStateValue = (state: T['$state']) => {
-    return (state as Record<string, unknown>)[key as string];
+    return state[key];
   };
 
   let lastSerializedValue = serializeValue(getStateValue(store.$state));
@@ -99,7 +99,7 @@ export function share<T extends Store, K extends keyof T['$state']>(
 
     externalUpdate = true;
     lastSerializedValue = incomingSerializedValue;
-    store.$patch({ [key as string]: evt.newValue } as Partial<typeof store.$state>);
+    store.$patch({ [key]: evt.newValue });
   };
 
   const sync = () => {
