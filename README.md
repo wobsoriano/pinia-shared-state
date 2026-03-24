@@ -1,12 +1,10 @@
 # pinia-shared-state
 
-[![npm (tag)](https://img.shields.io/npm/v/pinia-shared-state?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/pinia-shared-state) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/pinia-shared-state?style=flat&colorA=000000&colorB=000000) ![NPM](https://img.shields.io/npm/l/pinia-shared-state?style=flat&colorA=000000&colorB=000000)
-
 Sync your Pinia state across browser tabs.
 
 ## Requirements
 
-- vue ^3.5.11
+- pinia ^3.0.0
 
 ## Install
 
