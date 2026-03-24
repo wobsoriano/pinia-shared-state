@@ -1,10 +1,10 @@
-import type { PiniaPluginContext } from 'pinia'
-import type { Options } from './vanilla'
-import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
-import { serialize } from './utils'
+import type { PiniaPluginContext } from 'pinia';
+import type { Options } from './vanilla';
+import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
+import { serialize } from './utils';
 
 function stateHasKey(key: string, $state: PiniaPluginContext['store']['$state']) {
-  return Object.keys($state).includes(key)
+  return Object.keys($state).includes(key);
 }
 
 /**
@@ -32,61 +32,63 @@ export function PiniaSharedState({
   serializer,
 }: Options & { enable?: boolean }) {
   return ({ store, options }: PiniaPluginContext) => {
-    const isEnabled = options?.share?.enable ?? enable
-    const omittedKeys = options?.share?.omit ?? []
-    if (!isEnabled)
-      return
+    const isEnabled = options?.share?.enable ?? enable;
+    const omittedKeys = options?.share?.omit ?? [];
+    if (!isEnabled) return;
 
     const channel = new BroadcastChannelImpl(store.$id, {
       type,
-    })
+    });
 
-    let timestamp = 0
-    let externalUpdate = false
+    let timestamp = 0;
+    let externalUpdate = false;
 
-    const keysToUpdate = Object.keys(store.$state).filter(key => !omittedKeys.includes(key) && stateHasKey(key, store.$state))
+    const keysToUpdate = Object.keys(store.$state).filter(
+      (key) => !omittedKeys.includes(key) && stateHasKey(key, store.$state),
+    );
 
     channel.onmessage = (newState) => {
       if (newState === undefined) {
         channel.postMessage({
           timestamp,
           state: serialize(store.$state, serializer),
-        })
-        return
+        });
+        return;
       }
 
-      if (newState.timestamp <= timestamp)
-        return
+      if (newState.timestamp <= timestamp) return;
 
-      externalUpdate = true
-      timestamp = newState.timestamp
+      externalUpdate = true;
+      timestamp = newState.timestamp;
 
       store.$patch(
-        keysToUpdate.reduce((acc, key) => {
-          acc[key] = newState.state[key]
-          return acc
-        }, {} as Partial<typeof store.$state>),
-      )
-    }
+        keysToUpdate.reduce(
+          (acc, key) => {
+            acc[key] = newState.state[key];
+            return acc;
+          },
+          {} as Partial<typeof store.$state>,
+        ),
+      );
+    };
 
-    const shouldInitialize = options?.share?.initialize ?? initialize
-    if (shouldInitialize)
-      channel.postMessage(undefined)
+    const shouldInitialize = options?.share?.initialize ?? initialize;
+    if (shouldInitialize) channel.postMessage(undefined);
 
     store.$subscribe((_, state) => {
       if (!externalUpdate) {
-        timestamp = Date.now()
+        timestamp = Date.now();
         channel.postMessage({
           timestamp,
           state: serialize(state, serializer),
-        })
+        });
       }
-      externalUpdate = false
-    })
-  }
+      externalUpdate = false;
+    });
+  };
 }
 
-export { share } from './vanilla'
+export { share } from './vanilla';
 
 declare module 'pinia' {
   // eslint-disable-next-line unused-imports/no-unused-vars
@@ -118,9 +120,9 @@ declare module 'pinia' {
      * ```
      */
     share?: {
-      omit?: Array<keyof S>
-      enable?: boolean
-      initialize?: boolean
-    }
+      omit?: Array<keyof S>;
+      enable?: boolean;
+      initialize?: boolean;
+    };
   }
 }

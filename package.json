@@ -1,72 +1,62 @@
 {
   "name": "pinia-shared-state",
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
   "version": "1.0.1",
-  "packageManager": "pnpm@9.15.4",
+  "license": "MIT",
   "author": {
     "name": "Robert Soriano",
     "email": "sorianorobertc@gmail.com"
   },
-  "license": "MIT",
-  "funding": "https://github.com/sponsors/wobsoriano",
   "repository": {
     "type": "git",
     "url": "https://github.com/wobsoriano/pinia-shared-state.git"
   },
-  "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": {
-        "import": "./dist/index.d.ts",
-        "require": "./dist/index.d.cts"
-      },
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "unpkg": "dist/index.global.js",
-  "jsdelivr": "dist/index.global.js",
-  "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./*"
-      ]
-    }
-  },
+  "funding": "https://github.com/sponsors/wobsoriano",
   "files": [
     "dist"
   ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "tsup",
-    "dev": "pnpm build --watch --onSuccess=\"pnpm --filter vite dev\"",
-    "dev:nuxt": "pnpm build --watch --onSuccess=\"pnpm --filter nuxt3 dev\"",
-    "release": "pnpm build && changeset publish",
-    "prepublishOnly": "npm run build",
-    "test": "vitest run",
-    "lint": "eslint .",
-    "format": "eslint . --fix"
+    "build": "vp pack",
+    "release": "changeset publish",
+    "prepublishOnly": "vp run build",
+    "test": "vp test run",
+    "lint": "vp lint .",
+    "lint:fix": "vp lint . --fix",
+    "fmt": "vp fmt",
+    "prepare": "vp config"
+  },
+  "dependencies": {
+    "broadcast-channel": "^7.3.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.30.0",
+    "pinia": "^3.0.4",
+    "typescript": "^6.0.2",
+    "vite-plus": "latest",
+    "vitest": "npm:@voidzero-dev/vite-plus-test@latest",
+    "vue": "^3.5.30"
   },
   "peerDependencies": {
     "pinia": "^3.0.0"
   },
-  "dependencies": {
-    "broadcast-channel": "^7.0.0"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "^4.2.0",
-    "@changesets/cli": "^2.27.12",
-    "eslint": "^9.20.0",
-    "pinia": "^3.0.1",
-    "tsup": "^8.3.6",
-    "typescript": "^5.3.2",
-    "vitest": "^4.1.1",
-    "vue": "^3.5.11"
+  "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+    }
   }
 }

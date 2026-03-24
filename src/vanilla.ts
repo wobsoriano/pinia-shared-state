@@ -1,13 +1,13 @@
-import type { MethodType } from 'broadcast-channel'
-import type { Store } from 'pinia'
-import type { Serializer } from './utils'
-import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel'
-import { serialize } from './utils'
+import type { MethodType } from 'broadcast-channel';
+import type { Store } from 'pinia';
+import type { Serializer } from './utils';
+import { BroadcastChannel as BroadcastChannelImpl } from 'broadcast-channel';
+import { serialize } from './utils';
 
 export interface Options {
-  initialize?: boolean
-  type?: MethodType
-  serializer?: Serializer
+  initialize?: boolean;
+  type?: MethodType;
+  serializer?: Serializer;
 }
 
 /**
@@ -34,25 +34,25 @@ export function share<T extends Store, K extends keyof T['$state']>(
   key: K,
   store: T,
   { initialize, serializer, type }: Options,
-): { sync: () => void, unshare: () => void } {
-  const channelName = `${store.$id}-${key.toString()}`
+): { sync: () => void; unshare: () => void } {
+  const channelName = `${store.$id}-${key.toString()}`;
 
   const channel = new BroadcastChannelImpl(channelName, {
     type,
-  })
-  let externalUpdate = false
-  let timestamp = 0
+  });
+  let externalUpdate = false;
+  let timestamp = 0;
 
   store.$subscribe((_, state) => {
     if (!externalUpdate) {
-      timestamp = Date.now()
+      timestamp = Date.now();
       channel.postMessage({
         timestamp,
         newValue: serialize(state, serializer)[key],
-      })
+      });
     }
-    externalUpdate = false
-  })
+    externalUpdate = false;
+  });
 
   channel.onmessage = (evt) => {
     if (evt === undefined) {
@@ -60,24 +60,22 @@ export function share<T extends Store, K extends keyof T['$state']>(
         timestamp,
         // @ts-expect-error: TODO
         newValue: serialize(store.$state, serializer)[key],
-      })
-      return
+      });
+      return;
     }
-    if (evt.timestamp <= timestamp)
-      return
+    if (evt.timestamp <= timestamp) return;
 
-    externalUpdate = true
-    timestamp = evt.timestamp
-    store.$patch({ [key as string]: evt.newValue } as Partial<typeof store.$state>)
-  }
+    externalUpdate = true;
+    timestamp = evt.timestamp;
+    store.$patch({ [key as string]: evt.newValue } as Partial<typeof store.$state>);
+  };
 
-  const sync = () => channel.postMessage(undefined)
+  const sync = () => channel.postMessage(undefined);
   const unshare = () => {
-    return channel.close()
-  }
+    return channel.close();
+  };
 
-  if (initialize)
-    sync()
+  if (initialize) sync();
 
-  return { sync, unshare }
+  return { sync, unshare };
 }
