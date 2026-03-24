@@ -49,6 +49,7 @@
     "dev:nuxt": "pnpm build --watch --onSuccess=\"pnpm --filter nuxt3 dev\"",
     "release": "pnpm build && changeset publish",
     "prepublishOnly": "npm run build",
+    "test": "vitest run",
     "lint": "eslint .",
     "format": "eslint . --fix"
   },
@@ -65,6 +66,7 @@
     "pinia": "^3.0.1",
     "tsup": "^8.3.6",
     "typescript": "^5.3.2",
+    "vitest": "^4.1.1",
     "vue": "^3.5.11"
   }
 }
