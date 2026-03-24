@@ -61,11 +61,12 @@ export function PiniaSharedState({
       externalUpdate = true
       timestamp = newState.timestamp
 
-      store.$patch((state) => {
-        keysToUpdate.forEach((key) => {
-          state[key] = newState.state[key]
-        })
-      })
+      store.$patch(
+        keysToUpdate.reduce((acc, key) => {
+          acc[key] = newState.state[key]
+          return acc
+        }, {} as Partial<typeof store.$state>),
+      )
     }
 
     const shouldInitialize = options?.share?.initialize ?? initialize
