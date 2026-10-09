@@ -4,7 +4,7 @@ Sync your Pinia state across browser tabs.
 
 ## Requirements
 
-- pinia ^3.0.0
+- pinia ^3.0.0 || ^4.0.2
 
 ## Install
 

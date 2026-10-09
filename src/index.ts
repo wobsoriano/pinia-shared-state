@@ -49,7 +49,7 @@ export function PiniaSharedState({
 
     channel.onmessage = (newState) => {
       if (newState === undefined) {
-        channel.postMessage({
+        void channel.postMessage({
           timestamp,
           state: serialize(store.$state, serializer),
         });
@@ -73,12 +73,12 @@ export function PiniaSharedState({
     };
 
     const shouldInitialize = options?.share?.initialize ?? initialize;
-    if (shouldInitialize) channel.postMessage(undefined);
+    if (shouldInitialize) void channel.postMessage(undefined);
 
     store.$subscribe((_, state) => {
       if (!externalUpdate) {
         timestamp = Date.now();
-        channel.postMessage({
+        void channel.postMessage({
           timestamp,
           state: serialize(state, serializer),
         });

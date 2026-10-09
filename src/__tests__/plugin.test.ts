@@ -123,6 +123,22 @@ describe('piniaSharedState plugin', () => {
       sendCrossTabMessage(id, { count: 1 }, Date.now() - 1);
       expect(store.count).toBe(99);
     });
+
+    it('broadcasts a change made right after the store is created', () => {
+      const id = `sync-${storeCounter}`;
+      const useStore = defineStore(id, () => {
+        const count = ref(0);
+        return { count };
+      });
+
+      createTestPinia({ enable: true, initialize: true });
+      const store = useStore();
+      store.$patch({ count: 1 });
+
+      const broadcasts = getChannel(id).postedMessages.filter((msg) => msg !== undefined);
+      expect(broadcasts).toHaveLength(1);
+      expect(broadcasts[0]).toMatchObject({ state: { count: 1 } });
+    });
   });
 
   describe('object state sharing (bug fix)', () => {
