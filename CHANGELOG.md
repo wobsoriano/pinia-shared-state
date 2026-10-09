@@ -1,5 +1,11 @@
 # pinia-shared-state
 
+## 2.1.0
+
+### Minor Changes
+
+- 6bab889: Add support for Pinia v4. The `pinia` peer dependency range is now `^3.0.0 || ^4.0.2`.
+
 ## 2.0.1
 
 ### Patch Changes
