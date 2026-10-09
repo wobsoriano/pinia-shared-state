@@ -45,7 +45,6 @@
     "@changesets/cli": "^2.31.1",
     "pinia": "^4.0.2",
     "typescript": "^7.0.2",
-    "vite": "catalog:",
     "vite-plus": "catalog:",
     "vue": "^3.5.40"
   },
