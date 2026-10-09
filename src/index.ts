@@ -31,7 +31,7 @@ export function PiniaSharedState({
   type,
   serializer,
 }: Options & { enable?: boolean }) {
-  return async ({ store, options }: PiniaPluginContext) => {
+  return ({ store, options }: PiniaPluginContext) => {
     const isEnabled = options?.share?.enable ?? enable;
     const omittedKeys = options?.share?.omit ?? [];
     if (!isEnabled) return;
@@ -47,9 +47,9 @@ export function PiniaSharedState({
       (key) => !omittedKeys.includes(key) && stateHasKey(key, store.$state),
     );
 
-    channel.onmessage = async (newState) => {
+    channel.onmessage = (newState) => {
       if (newState === undefined) {
-        await channel.postMessage({
+        void channel.postMessage({
           timestamp,
           state: serialize(store.$state, serializer),
         });
@@ -73,12 +73,12 @@ export function PiniaSharedState({
     };
 
     const shouldInitialize = options?.share?.initialize ?? initialize;
-    if (shouldInitialize) await channel.postMessage(undefined);
+    if (shouldInitialize) void channel.postMessage(undefined);
 
-    store.$subscribe(async (_, state) => {
+    store.$subscribe((_, state) => {
       if (!externalUpdate) {
         timestamp = Date.now();
-        await channel.postMessage({
+        void channel.postMessage({
           timestamp,
           state: serialize(state, serializer),
         });
